@@ -8,27 +8,25 @@ const initialState = {
 
 };
 const newUserDetails = (state = initialState, action) => {
-  console.log('new user');
-  console.log(action.details);
   switch (action.type) {
     case NEW_USER_DETAILS:
       if (action.details.username) {
-        console.log(action);
         return {
           ...state,
           username: action.details.username,
+
         };
-      } if (action.datails.email) {
+      } if (action.details.email) {
         return {
           ...state,
           email: action.details.email,
         };
-      } if (action.datails.password) {
+      } if (action.details.password) {
         return {
           ...state,
           password: action.details.password,
         };
-      } if (action.datails.passwordConfirmation) {
+      } if (action.details.passwordConfirmation) {
         return {
           ...state,
           passwordConfirmation: action.details.passwordConfirmation,

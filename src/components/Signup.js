@@ -6,27 +6,24 @@ import { newUserAction } from '../actions';
 const signUp = ({ userCredentials, storeUserInfo }) => {
   const handleChange = (e) => {
     const userDetails = {};
-    if ((e.target.id === 'user-name')
-    || (e.target.id === 'user-email') || (e.target.id === 'user-password')
-    || (e.target.id === 'user-password-confirmation')) {
-      switch (e.target.id) {
-        case 'user-name':
-          userDetails.username = e.target.value;
-          break;
-        case 'user-email':
-          userDetails.email = e.target.value;
-          break;
-        case 'user-password':
-          userDetails.password = e.target.value;
-          break;
-        case 'user-password-confirmation':
-          userDetails.passwordConfirmation = e.target.value;
-          break;
-        default:
-          return;
-      }
-      storeUserInfo(userDetails);
+    switch (e.target.id) {
+      case 'user-name':
+        userDetails.username = e.target.value;
+        break;
+      case 'user-email':
+        userDetails.email = e.target.value;
+        console.log(userDetails);
+        break;
+      case 'user-password':
+        userDetails.password = e.target.value;
+        break;
+      case 'user-password-confirmation':
+        userDetails.passwordConfirmation = e.target.value;
+        break;
+      default:
+        return;
     }
+    storeUserInfo(userDetails);
   };
   return (
     <div>
