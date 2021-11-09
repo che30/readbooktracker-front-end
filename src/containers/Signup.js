@@ -1,7 +1,10 @@
+/* eslint-disable import/no-named-as-default
+*/
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { newUserAction } from '../actions';
+import creatUser from '../apirequests/CreateUser';
 // import PropTypes from 'prop-types'
 const signUp = ({ userCredentials, storeUserInfo }) => {
   const handleChange = (e) => {
@@ -12,7 +15,6 @@ const signUp = ({ userCredentials, storeUserInfo }) => {
         break;
       case 'user-email':
         userDetails.email = e.target.value;
-        console.log(userDetails);
         break;
       case 'user-password':
         userDetails.password = e.target.value;
@@ -24,6 +26,14 @@ const signUp = ({ userCredentials, storeUserInfo }) => {
         return;
     }
     storeUserInfo(userDetails);
+  };
+  const handleSubmit = () => {
+    if ((userCredentials.username !== '') && (userCredentials.email !== '')
+    && (userCredentials.password !== '') && (userCredentials.passwordConfirmation !== '')) {
+      creatUser(userCredentials).then((res) => console.log(res));
+      console.log('test succeeded');
+    }
+    // typedMovie('');
   };
   return (
     <div>
@@ -40,7 +50,7 @@ const signUp = ({ userCredentials, storeUserInfo }) => {
         </div>
         <div>
           <input
-            type="input"
+            type="email"
             placeholder="email"
             id="user-email"
             value={userCredentials.email}
@@ -50,7 +60,7 @@ const signUp = ({ userCredentials, storeUserInfo }) => {
         </div>
         <div>
           <input
-            type="input"
+            type="password"
             placeholder="password"
             id="user-password"
             value={userCredentials.password}
@@ -59,7 +69,7 @@ const signUp = ({ userCredentials, storeUserInfo }) => {
           />
         </div>
         <input
-          type="input"
+          type="password"
           placeholder="password confirmation"
           id="user-password-confirmation"
           value={userCredentials.passwordConfirmation}
@@ -67,10 +77,9 @@ const signUp = ({ userCredentials, storeUserInfo }) => {
           className="w-25 input-form text-center"
         />
         <div>
-          {/* <button>
-            {' '}
+          <button type="submit" onClick={handleSubmit}>
             submit
-          </button> */}
+          </button>
         </div>
       </form>
 
@@ -95,7 +104,7 @@ const mapStateProps = (state) => ({
 
 });
 const mapDispatchToProps = (dispatch) => ({
-  // getMovie: (movie) => dispatch(SearchMovie(movie)),
+  // StoreCreatedUserInfo: (details) => dispatch(saveCreatedUser(details)),
   storeUserInfo: (userinfo) => dispatch(newUserAction(userinfo)),
 });
 

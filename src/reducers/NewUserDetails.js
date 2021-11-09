@@ -1,10 +1,11 @@
-import { NEW_USER_DETAILS } from '../actions';
+import { NEW_USER_DETAILS, SAVE_NEW_USER_DETAILS } from '../actions';
 
 const initialState = {
   username: '',
   email: '',
   password: '',
   passwordConfirmation: '',
+  token: '',
 
 };
 const newUserDetails = (state = initialState, action) => {
@@ -33,6 +34,11 @@ const newUserDetails = (state = initialState, action) => {
         };
       }
       break;
+    case SAVE_NEW_USER_DETAILS:
+      return {
+        ...state,
+        token: action.details.token,
+      };
     default:
       return state;
   }
