@@ -1,4 +1,10 @@
-import { NEW_USER_DETAILS, SAVE_NEW_USER_DETAILS } from '../actions';
+import {
+  SAVE_NEW_USER_DETAILS,
+  SET_NEW_USER_EMAIL,
+  SET_NEW_USER_NAME,
+  SET_NEW_USER_PASSWORD,
+  SET_PASSWORD_CONFIRMATION,
+} from '../actions';
 
 const initialState = {
   username: '',
@@ -10,30 +16,30 @@ const initialState = {
 };
 const newUserDetails = (state = initialState, action) => {
   switch (action.type) {
-    case NEW_USER_DETAILS:
-      if (action.details.username) {
-        return {
-          ...state,
-          username: action.details.username,
+    case SET_NEW_USER_NAME:
+      return {
+        ...state,
+        username: action.username,
 
-        };
-      } if (action.details.email) {
-        return {
-          ...state,
-          email: action.details.email,
-        };
-      } if (action.details.password) {
-        return {
-          ...state,
-          password: action.details.password,
-        };
-      } if (action.details.passwordConfirmation) {
-        return {
-          ...state,
-          passwordConfirmation: action.details.passwordConfirmation,
-        };
-      }
-      break;
+      };
+    case SET_NEW_USER_EMAIL:
+      return {
+        ...state,
+        email: action.email,
+
+      };
+    case SET_NEW_USER_PASSWORD:
+      return {
+        ...state,
+        password: action.password,
+
+      };
+    case SET_PASSWORD_CONFIRMATION:
+      return {
+        ...state,
+        passwordConfirmation: action.passwordConfirmation,
+
+      };
     case SAVE_NEW_USER_DETAILS:
       return {
         ...state,
@@ -42,6 +48,5 @@ const newUserDetails = (state = initialState, action) => {
     default:
       return state;
   }
-  return false;
 };
 export default newUserDetails;

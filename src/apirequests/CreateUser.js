@@ -8,6 +8,7 @@ const creatUser = async (userCredentials) => {
     password: userCredentials.password,
     password_digest: userCredentials.passwordConfirmation,
   });
+  console.log(result.data);
   return result;
 };
 export default creatUser;

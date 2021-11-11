@@ -3,36 +3,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { newUserAction } from '../actions';
+import {
+  setNewUserEmail,
+  setNewUserName,
+  setNewUserPassword,
+  setPasswordConfirmation,
+} from '../actions';
 import creatUser from '../apirequests/CreateUser';
 // import PropTypes from 'prop-types'
-const signUp = ({ userCredentials, storeUserInfo }) => {
+const signUp = ({
+  userCredentials,
+  storeUserEmail,
+  storeUserName,
+  storeUserPassword,
+  storePasswordConfiration,
+}) => {
   const handleChange = (e) => {
     const userDetails = {};
     switch (e.target.id) {
       case 'user-name':
-        userDetails.username = e.target.value;
+        // userDetails.username = e.target.value;
+        storeUserName(e.target.value);
         break;
       case 'user-email':
         userDetails.email = e.target.value;
+        storeUserEmail(e.target.value);
         break;
       case 'user-password':
-        userDetails.password = e.target.value;
+        // userDetails.password = e.target.value;
+        storeUserPassword(e.target.value);
         break;
       case 'user-password-confirmation':
-        userDetails.passwordConfirmation = e.target.value;
+        // userDetails.passwordConfirmation = e.target.value;
+        storePasswordConfiration(e.target.value);
         break;
       default:
-        return;
     }
-    storeUserInfo(userDetails);
   };
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     if ((userCredentials.username !== '') && (userCredentials.email !== '')
     && (userCredentials.password !== '') && (userCredentials.passwordConfirmation !== '')) {
       creatUser(userCredentials).then((res) => console.log(res));
       console.log('test succeeded');
     }
+    e.preventDefault();
     // typedMovie('');
   };
   return (
@@ -87,11 +101,17 @@ const signUp = ({ userCredentials, storeUserInfo }) => {
   );
 };
 signUp.defaultProps = {
-  storeUserInfo() {},
+  storeUserName() {},
+  storeUserPassword() {},
+  storePasswordConfiration() {},
+  storeUserEmail() {},
   userCredentials: {},
 };
 signUp.propTypes = {
-  storeUserInfo: PropTypes.func,
+  storeUserName: PropTypes.func,
+  storeUserPassword: PropTypes.func,
+  storeUserEmail: PropTypes.func,
+  storePasswordConfiration: PropTypes.func,
   userCredentials: PropTypes.shape({
     username: PropTypes.string,
     email: PropTypes.string,
@@ -105,7 +125,10 @@ const mapStateProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   // StoreCreatedUserInfo: (details) => dispatch(saveCreatedUser(details)),
-  storeUserInfo: (userinfo) => dispatch(newUserAction(userinfo)),
+  storeUserName: (username) => dispatch(setNewUserName(username)),
+  storeUserEmail: (email) => dispatch(setNewUserEmail(email)),
+  storeUserPassword: (password) => dispatch(setNewUserPassword(password)),
+  storePasswordConfiration: (confirmation) => dispatch(setPasswordConfirmation(confirmation)),
 });
 
 export default connect(mapStateProps, mapDispatchToProps)(signUp);
