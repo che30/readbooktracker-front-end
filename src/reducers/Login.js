@@ -14,13 +14,11 @@ const initialState = {
 const LoginUser = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_USER_EMAIL:
-      console.log('hit reducers');
       return {
         ...state,
         email: action.email,
       };
     case LOGIN_USER_PASSWORD:
-      console.log({ ...state });
       return {
         ...state,
         password: action.password,
