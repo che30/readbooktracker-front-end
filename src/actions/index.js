@@ -6,6 +6,22 @@ const SET_NEW_USER_PASSWORD = 'NEW USER PASSWORD';
 const SET_PASSWORD_CONFIRMATION = 'PASSWORD CONFIRMATION';
 const SAVE_NEW_USER_DETAILS = 'SAVE_NEW_USER_DETAILS';
 const SAVE_CREATED_USER_DETAILS = 'SAVE_CREATED_USER_DETAILS';
+const LOGIN_USER_EMAIL = 'LOGIN_USER_EMAIL';
+const LOGIN_USER_PASSWORD = 'LOGIN_USER_PASSWORD';
+const LOGIN_USER_AUTH = 'LOGIN_USER_AUTH';
+
+const loginUserEmail = (email) => ({
+  type: LOGIN_USER_EMAIL,
+  email,
+});
+const loguserPassword = (password) => ({
+  type: LOGIN_USER_PASSWORD,
+  password,
+});
+const logUserAuth = (authorization) => ({
+  type: LOGIN_USER_AUTH,
+  authorization,
+});
 const setNewUserName = (username) => ({
   type: SET_NEW_USER_NAME,
   username,
@@ -32,6 +48,12 @@ export {
   setNewUserEmail,
   setNewUserPassword,
   setPasswordConfirmation,
+  loguserPassword,
+  logUserAuth,
+  loginUserEmail,
+  LOGIN_USER_EMAIL,
+  LOGIN_USER_PASSWORD,
+  LOGIN_USER_AUTH,
   SET_NEW_USER_NAME,
   SET_NEW_USER_EMAIL,
   SET_NEW_USER_PASSWORD,

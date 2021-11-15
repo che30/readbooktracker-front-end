@@ -1,14 +1,16 @@
 import axios from 'axios';
 
 const creatUser = async (userCredentials) => {
-  console.log('hit the create user');
-  const result = await axios.post('http://127.0.0.1:3001/signup', {
-    username: userCredentials.username,
-    email: userCredentials.email,
-    password: userCredentials.password,
-    password_digest: userCredentials.passwordConfirmation,
-  });
-  console.log(result.data);
-  return result;
+  try {
+    const result = await axios.post('http://127.0.0.1:3001/signup', {
+      username: userCredentials.username,
+      email: userCredentials.email,
+      password: userCredentials.password,
+      password_confirmation: userCredentials.passwordConfirmation,
+    });
+    return result;
+  } catch (error) {
+    return error;
+  }
 };
 export default creatUser;

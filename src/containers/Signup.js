@@ -4,6 +4,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
+  loginUserEmail,
+  logUserAuth,
+  loguserPassword,
   setNewUserEmail,
   setNewUserName,
   setNewUserPassword,
@@ -17,24 +20,22 @@ const signUp = ({
   storeUserName,
   storeUserPassword,
   storePasswordConfiration,
+  loguserEmail,
+  logPassword,
+  logUserAuth,
 }) => {
   const handleChange = (e) => {
-    const userDetails = {};
     switch (e.target.id) {
       case 'user-name':
-        // userDetails.username = e.target.value;
         storeUserName(e.target.value);
         break;
       case 'user-email':
-        userDetails.email = e.target.value;
         storeUserEmail(e.target.value);
         break;
       case 'user-password':
-        // userDetails.password = e.target.value;
         storeUserPassword(e.target.value);
         break;
       case 'user-password-confirmation':
-        // userDetails.passwordConfirmation = e.target.value;
         storePasswordConfiration(e.target.value);
         break;
       default:
@@ -42,10 +43,15 @@ const signUp = ({
   };
   const handleSubmit = (e) => {
     if ((userCredentials.username !== '') && (userCredentials.email !== '')
-    && (userCredentials.password !== '') && (userCredentials.passwordConfirmation !== '')) {
-      creatUser(userCredentials).then((res) => console.log(res));
-      console.log('test succeeded');
+     && (userCredentials.password !== '') && (userCredentials.passwordConfirmation !== '')) {
+      creatUser(userCredentials).then((result) => {
+        loguserEmail(userCredentials.email);
+        logPassword(userCredentials.password);
+        logUserAuth(result.data.auth_token);
+        console.log('test', result.data.auth_token);
+      });
     }
+
     e.preventDefault();
     // typedMovie('');
   };
@@ -104,10 +110,17 @@ signUp.defaultProps = {
   storeUserName() {},
   storeUserPassword() {},
   storePasswordConfiration() {},
+  loguserEmail() {},
   storeUserEmail() {},
+  logPassword() {},
+  logUserAuth() {},
   userCredentials: {},
+
 };
 signUp.propTypes = {
+  logUserAuth: PropTypes.func,
+  logPassword: PropTypes.func,
+  loguserEmail: PropTypes.func,
   storeUserName: PropTypes.func,
   storeUserPassword: PropTypes.func,
   storeUserEmail: PropTypes.func,
@@ -120,11 +133,14 @@ signUp.propTypes = {
   }),
 };
 const mapStateProps = (state) => ({
-  userCredentials: state,
+  userCredentials: state.newUserDetails,
 
 });
 const mapDispatchToProps = (dispatch) => ({
   // StoreCreatedUserInfo: (details) => dispatch(saveCreatedUser(details)),
+  logUserAuth: (auth) => dispatch(logUserAuth(auth)),
+  logPassword: (password) => dispatch(loguserPassword(password)),
+  loguserEmail: (details) => dispatch(loginUserEmail(details)),
   storeUserName: (username) => dispatch(setNewUserName(username)),
   storeUserEmail: (email) => dispatch(setNewUserEmail(email)),
   storeUserPassword: (password) => dispatch(setNewUserPassword(password)),
