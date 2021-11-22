@@ -1,8 +1,9 @@
 /* eslint-disable import/no-named-as-default
 */
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import {
   loginUserEmail,
   logUserAuth,
@@ -13,6 +14,7 @@ import {
   setPasswordConfirmation,
 } from '../actions';
 import creatUser from '../apirequests/CreateUser';
+import sendLoginRequest from '../apirequests/sendLoginRequest';
 // import PropTypes from 'prop-types'
 const signUp = ({
   userCredentials,
@@ -24,6 +26,7 @@ const signUp = ({
   logPassword,
   logUserAuth,
 }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleChange = (e) => {
     switch (e.target.id) {
       case 'user-name':
@@ -45,16 +48,29 @@ const signUp = ({
     if ((userCredentials.username !== '') && (userCredentials.email !== '')
      && (userCredentials.password !== '') && (userCredentials.passwordConfirmation !== '')) {
       creatUser(userCredentials).then((result) => {
-        loguserEmail(userCredentials.email);
-        logPassword(userCredentials.password);
-        logUserAuth(result.data.auth_token);
-        console.log('test', result.data.auth_token);
+        if (result.data.status === 200) {
+          loguserEmail(userCredentials.email);
+          logPassword(userCredentials.password);
+          logUserAuth(result.data.auth_token);
+          sendLoginRequest(userCredentials.email,
+            userCredentials.password).then((result) => {
+            localStorage.setItem('Authorization',
+              JSON.stringify(result.data.auth_token));
+            setIsLoggedIn(true);
+          });
+        }
+        console.log('before results');
+        console.log(result.data);
+        // console.log('test', result.data.auth_token);
       });
     }
 
     e.preventDefault();
     // typedMovie('');
   };
+  if (isLoggedIn) {
+    return <Redirect to="/" />;
+  }
   return (
     <div>
       <form>
