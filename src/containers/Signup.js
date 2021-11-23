@@ -29,7 +29,6 @@ const signUp = ({
   updateStatus,
   isLoggedIn,
 }) => {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleChange = (e) => {
     switch (e.target.id) {
       case 'user-name':
@@ -167,7 +166,6 @@ const mapStateProps = (state) => ({
 
 });
 const mapDispatchToProps = (dispatch) => ({
-  // StoreCreatedUserInfo: (details) => dispatch(saveCreatedUser(details)),
   updateStatus: (status) => dispatch(LogInLogOutState(status)),
   storeUserName: (username) => dispatch(setNewUserName(username)),
   storeUserEmail: (email) => dispatch(setNewUserEmail(email)),
