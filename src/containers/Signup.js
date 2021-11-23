@@ -1,32 +1,35 @@
 /* eslint-disable import/no-named-as-default
 */
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import {
-  loginUserEmail,
-  logUserAuth,
-  loguserPassword,
+  accountBeignCreated,
+  LogInLogOutState,
   setNewUserEmail,
   setNewUserName,
   setNewUserPassword,
   setPasswordConfirmation,
+  ValidateEr,
 } from '../actions';
 import creatUser from '../apirequests/CreateUser';
 import sendLoginRequest from '../apirequests/sendLoginRequest';
-// import PropTypes from 'prop-types'
+import CreationRequestMsg from './CreationRequestMsg';
+import ErrMsg from './ErrMsg';
+
 const signUp = ({
   userCredentials,
   storeUserEmail,
   storeUserName,
   storeUserPassword,
   storePasswordConfiration,
-  loguserEmail,
-  logPassword,
-  logUserAuth,
+  creatMsg,
+  errMsg,
+  updateStatus,
+  isLoggedIn,
 }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleChange = (e) => {
     switch (e.target.id) {
       case 'user-name':
@@ -45,79 +48,87 @@ const signUp = ({
     }
   };
   const handleSubmit = (e) => {
-    if ((userCredentials.username !== '') && (userCredentials.email !== '')
-     && (userCredentials.password !== '') && (userCredentials.passwordConfirmation !== '')) {
-      creatUser(userCredentials).then((result) => {
-        if (result.data.status === 200) {
-          loguserEmail(userCredentials.email);
-          logPassword(userCredentials.password);
-          logUserAuth(result.data.auth_token);
-          sendLoginRequest(userCredentials.email,
-            userCredentials.password).then((result) => {
-            localStorage.setItem('Authorization',
-              JSON.stringify(result.data.auth_token));
-            setIsLoggedIn(true);
-          });
-        }
-        console.log('before results');
-        console.log(result.data);
-        // console.log('test', result.data.auth_token);
-      });
-    }
+    creatUser(userCredentials).then((result) => {
+      if (result.status === 201) {
+        creatMsg(true);
+        sendLoginRequest(userCredentials.email,
+          userCredentials.password).then(() => {
+          updateStatus(true);
+          creatMsg(false);
+        });
+      }
+      if (result.status === 200) {
+        errMsg(result.data);
+      }
+    });
 
     e.preventDefault();
     // typedMovie('');
   };
+  useEffect(() => {
+    const cred = JSON.parse(localStorage.getItem('data'));
+    if ((cred !== null) && Object.keys(cred).length !== 0) {
+      updateStatus(true);
+    }
+  });
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }
   return (
     <div>
-      <form>
-        <div>
-          <input
-            type="input"
-            placeholder="username"
-            id="user-name"
-            value={userCredentials.username}
-            onChange={handleChange}
-            className="w-25 input-form text-center"
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            placeholder="email"
-            id="user-email"
-            value={userCredentials.email}
-            onChange={handleChange}
-            className="w-25 input-form text-center"
-          />
-        </div>
-        <div>
+      <div>
+        <CreationRequestMsg />
+      </div>
+      <div>
+        <ErrMsg />
+      </div>
+      <div>
+        <form>
+          <div>
+            <input
+              type="input"
+              placeholder="username"
+              id="user-name"
+              value={userCredentials.username}
+              onChange={handleChange}
+              className="w-25 input-form text-center"
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="email"
+              id="user-email"
+              value={userCredentials.email}
+              onChange={handleChange}
+              className="w-25 input-form text-center"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="password"
+              id="user-password"
+              value={userCredentials.password}
+              onChange={handleChange}
+              className="w-25 input-form text-center"
+            />
+          </div>
           <input
             type="password"
-            placeholder="password"
-            id="user-password"
-            value={userCredentials.password}
+            placeholder="password confirmation"
+            id="user-password-confirmation"
+            value={userCredentials.passwordConfirmation}
             onChange={handleChange}
             className="w-25 input-form text-center"
           />
-        </div>
-        <input
-          type="password"
-          placeholder="password confirmation"
-          id="user-password-confirmation"
-          value={userCredentials.passwordConfirmation}
-          onChange={handleChange}
-          className="w-25 input-form text-center"
-        />
-        <div>
-          <button type="submit" onClick={handleSubmit}>
-            submit
-          </button>
-        </div>
-      </form>
+          <div>
+            <button type="submit" onClick={handleSubmit}>
+              submit
+            </button>
+          </div>
+        </form>
+      </div>
 
     </div>
   );
@@ -126,21 +137,23 @@ signUp.defaultProps = {
   storeUserName() {},
   storeUserPassword() {},
   storePasswordConfiration() {},
-  loguserEmail() {},
   storeUserEmail() {},
-  logPassword() {},
-  logUserAuth() {},
+  creatMsg() {},
+  errMsg() {},
+  updateStatus() {},
   userCredentials: {},
 
 };
 signUp.propTypes = {
-  logUserAuth: PropTypes.func,
-  logPassword: PropTypes.func,
-  loguserEmail: PropTypes.func,
+  LoginUser: PropTypes.func,
   storeUserName: PropTypes.func,
   storeUserPassword: PropTypes.func,
   storeUserEmail: PropTypes.func,
   storePasswordConfiration: PropTypes.func,
+  creatMsg: PropTypes.func,
+  errMsg: PropTypes.func,
+  updateStatus: PropTypes.func,
+  isLoggedIn: PropTypes.bool.isRequired,
   userCredentials: PropTypes.shape({
     username: PropTypes.string,
     email: PropTypes.string,
@@ -150,17 +163,18 @@ signUp.propTypes = {
 };
 const mapStateProps = (state) => ({
   userCredentials: state.newUserDetails,
+  isLoggedIn: state.LoginUser.loggedIn,
 
 });
 const mapDispatchToProps = (dispatch) => ({
   // StoreCreatedUserInfo: (details) => dispatch(saveCreatedUser(details)),
-  logUserAuth: (auth) => dispatch(logUserAuth(auth)),
-  logPassword: (password) => dispatch(loguserPassword(password)),
-  loguserEmail: (details) => dispatch(loginUserEmail(details)),
+  updateStatus: (status) => dispatch(LogInLogOutState(status)),
   storeUserName: (username) => dispatch(setNewUserName(username)),
   storeUserEmail: (email) => dispatch(setNewUserEmail(email)),
   storeUserPassword: (password) => dispatch(setNewUserPassword(password)),
   storePasswordConfiration: (confirmation) => dispatch(setPasswordConfirmation(confirmation)),
+  creatMsg: (msg) => dispatch(accountBeignCreated(msg)),
+  errMsg: (msg) => dispatch(ValidateEr(msg)),
 });
 
 export default connect(mapStateProps, mapDispatchToProps)(signUp);

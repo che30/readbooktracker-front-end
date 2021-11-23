@@ -9,7 +9,21 @@ const SAVE_CREATED_USER_DETAILS = 'SAVE_CREATED_USER_DETAILS';
 const LOGIN_USER_EMAIL = 'LOGIN_USER_EMAIL';
 const LOGIN_USER_PASSWORD = 'LOGIN_USER_PASSWORD';
 const LOGIN_USER_AUTH = 'LOGIN_USER_AUTH';
-
+const YOUR_ACCOUNT_IS_CREATED = 'YOUR ACCOUNT CREATED';
+const VALIDATION_ERROR = 'VALIDATION_ERROR';
+const LOG_IN_LOG_OUT_STATE = 'LOG IN LOG OUT STATE';
+const LogInLogOutState = (status) => ({
+  type: LOG_IN_LOG_OUT_STATE,
+  status,
+});
+const ValidateEr = (error) => ({
+  type: VALIDATION_ERROR,
+  error,
+});
+const accountBeignCreated = (msg) => ({
+  type: YOUR_ACCOUNT_IS_CREATED,
+  msg,
+});
 const loginUserEmail = (email) => ({
   type: LOGIN_USER_EMAIL,
   email,
@@ -51,6 +65,9 @@ export {
   loguserPassword,
   logUserAuth,
   loginUserEmail,
+  accountBeignCreated,
+  ValidateEr,
+  LogInLogOutState,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,
@@ -60,4 +77,7 @@ export {
   SET_PASSWORD_CONFIRMATION,
   SAVE_NEW_USER_DETAILS,
   SAVE_CREATED_USER_DETAILS,
+  YOUR_ACCOUNT_IS_CREATED,
+  VALIDATION_ERROR,
+  LOG_IN_LOG_OUT_STATE,
 };

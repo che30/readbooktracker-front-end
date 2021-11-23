@@ -4,6 +4,7 @@ import {
   SET_NEW_USER_NAME,
   SET_NEW_USER_PASSWORD,
   SET_PASSWORD_CONFIRMATION,
+  YOUR_ACCOUNT_IS_CREATED,
 } from '../actions';
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   password: '',
   passwordConfirmation: '',
   token: '',
+  loading: false,
 
 };
 const newUserDetails = (state = initialState, action) => {
@@ -44,6 +46,13 @@ const newUserDetails = (state = initialState, action) => {
       return {
         ...state,
         token: action.details.token,
+      };
+    case YOUR_ACCOUNT_IS_CREATED:
+      console.log('after account is created');
+      console.log(action.msg);
+      return {
+        ...state,
+        loading: action.msg,
       };
     default:
       return state;
