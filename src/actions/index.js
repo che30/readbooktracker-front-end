@@ -14,10 +14,10 @@ const VALIDATION_ERROR = 'VALIDATION_ERROR';
 const LOG_IN_LOG_OUT_STATE = 'LOG IN LOG OUT STATE';
 const NEW_CATEGORY = 'NEW CATEGORY';
 
-const NewCategory = (cat) =>({
-type: NEW_CATEGORY,
-cat,
-})
+const NewCategoryAction = (cat) => ({
+  type: NEW_CATEGORY,
+  cat,
+});
 const LogInLogOutState = (status) => ({
   type: LOG_IN_LOG_OUT_STATE,
   status,
@@ -74,7 +74,7 @@ export {
   accountBeignCreated,
   ValidateEr,
   LogInLogOutState,
-  NewCategory,
+  NewCategoryAction,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,

@@ -53,7 +53,7 @@ const signUp = ({
         sendLoginRequest(userCredentials.email,
           userCredentials.password).then(() => {
           updateStatus(true);
-          creatMsg(false);
+          // creatMsg(false);
         });
       }
       if (result.status === 200) {

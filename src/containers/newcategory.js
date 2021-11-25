@@ -1,21 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { NewCategoryAction, ValidateEr } from '../actions';
+import createNewCategory from '../apirequests/createNewCategory';
+import ErrMsg from './ErrMsg';
 
-const NewCategory = () => {
+const NewCategory = ({
+  savecatname,
+  categoryName,
+  errMsg,
+}) => {
   const handleChange = (e) => {
-    console.log(e.target.name);
+    console.log(e.target);
+    console.log('it handles changes ');
+    console.log(categoryName);
+    savecatname(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handle submit');
+    createNewCategory(categoryName).then((res) => {
+      if (res.status === 200) {
+        errMsg(res.data);
+      }
+    });
   };
   return (
     <div>
+      <div className="mt-3">
+        <ErrMsg />
+      </div>
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
+          type="input"
           placeholder="name"
           onChange={handleChange}
           name="category"
+          value={categoryName}
         />
         <button type="submit">
           submit
@@ -24,4 +44,21 @@ const NewCategory = () => {
     </div>
   );
 };
-export default NewCategory;
+NewCategory.defaultProps = {
+  savecatname() {},
+  errMsg() {},
+  categoryName: '',
+};
+NewCategory.propTypes = {
+  savecatname: PropTypes.func,
+  categoryName: PropTypes.string,
+  errMsg: PropTypes.func,
+};
+const mapStateProps = (state) => ({
+  categoryName: state.saveCategoryName.categoryName,
+});
+const mapDispatchToProps = (dispatch) => ({
+  savecatname: (catname) => dispatch(NewCategoryAction(catname)),
+  errMsg: (msg) => dispatch(ValidateEr(msg)),
+});
+export default connect(mapStateProps, mapDispatchToProps)(NewCategory);
