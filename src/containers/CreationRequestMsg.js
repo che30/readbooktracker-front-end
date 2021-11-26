@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const CreateRequestMsg = ({ load }) => {
-  console.log(load);
   if (load) {
     return (
       <div>

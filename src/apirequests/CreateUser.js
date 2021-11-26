@@ -9,11 +9,8 @@ const creatUser = async (userCredentials) => {
   };
   try {
     const result = await axios.post('http://127.0.0.1:3001/signup', body);
-    console.log(' create user ');
     return result;
   } catch (error) {
-    console.log('catch');
-    console.log(error.Error.errors);
     return error;
   }
 };

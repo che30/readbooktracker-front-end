@@ -8,10 +8,8 @@ const sendLoginRequest = async (email, password) => {
     });
     localStorage.setItem('data',
       JSON.stringify(result.data));
-    console.log(result);
     return result;
   } catch (error) {
-    console.log(error);
     return error;
   }
 };

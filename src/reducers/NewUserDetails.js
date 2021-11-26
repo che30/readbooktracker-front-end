@@ -48,8 +48,6 @@ const newUserDetails = (state = initialState, action) => {
         token: action.details.token,
       };
     case YOUR_ACCOUNT_IS_CREATED:
-      console.log('after account is created');
-      console.log(action.msg);
       return {
         ...state,
         loading: action.msg,

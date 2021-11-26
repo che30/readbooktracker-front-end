@@ -11,17 +11,16 @@ const NewCategory = ({
   errMsg,
 }) => {
   const handleChange = (e) => {
-    console.log(e.target);
-    console.log('it handles changes ');
-    console.log(categoryName);
     savecatname(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     createNewCategory(categoryName).then((res) => {
+      console.log(res);
       if (res.status === 200) {
         errMsg(res.data);
       }
+      savecatname('');
     });
   };
   return (

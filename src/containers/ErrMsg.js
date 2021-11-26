@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const ErrMsg = ({ errors }) => {
-  console.log('error msg', errors);
   if (errors !== '') {
     return (
       <div>
