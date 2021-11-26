@@ -1,36 +1,40 @@
-import { NEW_BOOK_AUTHOR, NEW_BOOK_ISBN, NEW_BOOK_NAME, NEW_BOOK_PAGES } from "../actions";
+import {
+  NEW_BOOK_AUTHOR,
+  NEW_BOOK_ISBN, NEW_BOOK_NAME,
+  NEW_BOOK_PAGES,
+} from '../actions';
 
 const initialState = {
   name: '',
-  Author: '',
+  author: '',
   isbn: '',
   pages: '',
-}
-const saveNewBookReducer = (state = initialState, action) =>{
+};
+const saveNewBookReducer = (state = initialState, action) => {
   switch (action.type) {
     case NEW_BOOK_NAME:
-      return{
+      return {
         ...state,
-        name: action.name
-      }
+        name: action.name,
+      };
     case NEW_BOOK_AUTHOR:
-      return{
+      return {
         ...state,
-        name: action.author
-      }
+        author: action.author,
+      };
     case NEW_BOOK_ISBN:
-      return{
+      return {
         ...state,
-        name: action.isbn
-      }
+        isbn: action.isbn,
+      };
     case NEW_BOOK_PAGES:
-      return{
+      return {
         ...state,
-        name: action.pages
-      }
-  
+        pages: action.pages,
+      };
+
     default:
       return state;
   }
-}
-export default saveNewBookReducer
+};
+export default saveNewBookReducer;
