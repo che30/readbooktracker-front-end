@@ -13,7 +13,26 @@ const YOUR_ACCOUNT_IS_CREATED = 'YOUR ACCOUNT CREATED';
 const VALIDATION_ERROR = 'VALIDATION_ERROR';
 const LOG_IN_LOG_OUT_STATE = 'LOG IN LOG OUT STATE';
 const NEW_CATEGORY = 'NEW CATEGORY';
-
+const NEW_BOOK_NAME = 'NEW BOOK NAME';
+const NEW_BOOK_AUTHOR= 'NEW BOOK AUTHOR';
+const NEW_BOOK_ISBN = 'NEW BOOK ISBN';
+const NEW_BOOK_PAGES= 'NEW BOOK PAGES';
+const NewBookName = (bookName) =>({
+  type: NEW_BOOK_NAME,
+  bookName,
+})
+const NewBookAuthor = (author) =>({
+  type: NEW_BOOK_AUTHOR,
+  author,
+})
+const NewBookIsbn = (isbn) =>({
+  type: NEW_BOOK_ISBN,
+  author
+})
+const  NewBookPages = (pages) =>({
+  type: NEW_BOOK_PAGES,
+  pages
+})
 const NewCategoryAction = (cat) => ({
   type: NEW_CATEGORY,
   cat,
@@ -75,6 +94,10 @@ export {
   ValidateEr,
   LogInLogOutState,
   NewCategoryAction,
+  NewBookName,
+  NewBookAuthor ,
+  NewBookIsbn,
+  NewBookPages,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,
@@ -88,4 +111,8 @@ export {
   VALIDATION_ERROR,
   LOG_IN_LOG_OUT_STATE,
   NEW_CATEGORY,
+  NEW_BOOK_NAME ,
+  NEW_BOOK_AUTHOR,
+  NEW_BOOK_ISBN,
+  NEW_BOOK_PAGES,
 };
