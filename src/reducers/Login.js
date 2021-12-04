@@ -1,5 +1,4 @@
 import {
-  LOGIN_USER_AUTH,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOG_IN_LOG_OUT_STATE,
@@ -9,8 +8,6 @@ import {
 const initialState = {
   email: '',
   password: '',
-  authorization: '',
-  username: '',
   loggedIn: false,
 };
 
@@ -25,11 +22,6 @@ const LoginUser = (state = initialState, action) => {
       return {
         ...state,
         password: action.password,
-      };
-    case LOGIN_USER_AUTH:
-      return {
-        ...state,
-        authorization: action.authorization,
       };
     case LOG_IN_LOG_OUT_STATE:
       return {

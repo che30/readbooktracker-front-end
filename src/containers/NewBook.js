@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -25,7 +26,6 @@ const NewBook = ({
         break;
       case 'isbn':
         console.log(e.target.value);
-        console.log('working');
         saveIsbn(e.target.value);
         break;
       case 'pages':
@@ -36,8 +36,8 @@ const NewBook = ({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('it works here ');
   };
+
   return (
     <div>
       <form>
@@ -92,6 +92,8 @@ NewBook.defaultProps = {
   saveIsbn() {},
   saveNbPg() {},
   book: {},
+  categories: {},
+
 };
 NewBook.propTypes = {
   saveName: PropTypes.func,
@@ -104,9 +106,14 @@ NewBook.propTypes = {
     isbn: PropTypes.string,
     numberOfPages: PropTypes.number,
   }),
+  categories: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }),
 };
 const mapStateProps = (state) => ({
   book: state.saveNewBookReducer,
+  categories: state.AllCategories,
 });
 const mapDispatchToProps = (dispatch) => ({
   saveName: (name) => dispatch(NewBookName(name)),

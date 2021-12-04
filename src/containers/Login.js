@@ -1,31 +1,39 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import sendLoginRequest from '../apirequests/sendLoginRequest';
-import LoginUser from '../reducers/Login';
+import { LogInLogOutState, loginUserEmail, loguserPassword } from '../actions';
 
 const Login = (props) => {
   const {
-    email, password, authorization, login,
+    email,
+    password,
+    setPassword,
+    setEmail,
+    isLoggedIn,
+    logIn,
   } = props;
-  const userdata = {
-    email: '',
-    password: '',
-  };
   const handleChange = (e) => {
-    if (e.target.id === email) {
-      userdata.email = e.target.id;
-    } else if (e.target.id === password) {
-      userdata.password = e.target.id;
+    if (e.target.id === 'user-email') {
+      setEmail(e.target.value);
+    } else if (e.target.id === 'user-password') {
+      setPassword(e.target.value);
     }
-    login(email, password);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     if ((email !== '') && (password !== '')) {
-      sendLoginRequest(email, password, authorization);
+      sendLoginRequest(email, password).then((res) => {
+        if (res.status === 200) {
+          logIn(true);
+        }
+      });
     }
   };
+  if (isLoggedIn) {
+    return <Redirect to="/" />;
+  }
   return (
     <div>
       <form>
@@ -35,7 +43,7 @@ const Login = (props) => {
             type="email"
             placeholder="email"
             id="user-email"
-            value={userdata.email}
+            value={email}
             onChange={handleChange}
             className="w-25 input-form text-center"
           />
@@ -45,12 +53,12 @@ const Login = (props) => {
             type="password"
             placeholder="password"
             id="user-password"
-            value={userdata.password}
+            value={password}
             onChange={handleChange}
             className="w-25 input-form text-center"
           />
         </div>
-        <button type="submit" onSubmit={handleSubmit}>
+        <button type="submit" onClick={handleSubmit}>
           submit
         </button>
       </form>
@@ -58,23 +66,28 @@ const Login = (props) => {
   );
 };
 Login.defaultProps = {
-  login() {},
+  setEmail() {},
+  setPassword() {},
+  logIn() {},
   email: '',
-  authorization: '',
   password: '',
 };
 Login.propTypes = {
-  login: PropTypes.func,
+  setEmail: PropTypes.func,
+  setPassword: PropTypes.func,
+  logIn: PropTypes.func,
   email: PropTypes.string,
   password: PropTypes.string,
-  authorization: PropTypes.string,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 const mapStateProps = (state) => ({
   email: state.LoginUser.email,
   password: state.LoginUser.password,
-  authorization: state.LoginUser.authorization,
+  isLoggedIn: state.LoginUser.loggedIn,
 });
 const mapDispatchToProps = (dispatch) => ({
-  login: (email, password) => dispatch(LoginUser(email, password)),
+  setPassword: (password) => dispatch(loguserPassword(password)),
+  setEmail: (email) => dispatch(loginUserEmail(email)),
+  logIn: (status) => dispatch(LogInLogOutState(status)),
 });
 export default connect(mapStateProps, mapDispatchToProps)(Login);

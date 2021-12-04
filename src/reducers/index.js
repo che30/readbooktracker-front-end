@@ -4,6 +4,7 @@ import newUserDetails from './NewUserDetails';
 import ValidateErr from './validateErr';
 import saveCategoryName from './saveCatName';
 import saveNewBookReducer from './saveNewBook';
+import AllCategories from './AllCategories';
 
 const rootReducer = () => combineReducers({
   newUserDetails,
@@ -11,5 +12,6 @@ const rootReducer = () => combineReducers({
   ValidateErr,
   saveCategoryName,
   saveNewBookReducer,
+  AllCategories,
 });
 export default rootReducer;

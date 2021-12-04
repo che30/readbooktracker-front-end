@@ -1,4 +1,7 @@
 // const CREATE_USER = 'CREATE USER'
+
+import getAllCategories from '../apirequests/GetAllCategories';
+
 // const SIGN_IN_USER = 'SIGN IN USER'
 const SET_NEW_USER_NAME = 'NEW USER NAME';
 const SET_NEW_USER_EMAIL = 'NEW USER EMAIL';
@@ -17,6 +20,40 @@ const NEW_BOOK_NAME = 'NEW BOOK NAME';
 const NEW_BOOK_AUTHOR = 'NEW BOOK AUTHOR';
 const NEW_BOOK_ISBN = 'NEW BOOK ISBN';
 const NEW_BOOK_PAGES = 'NEW BOOK PAGES';
+const ALL_CATEGORIES = 'ALL CATEGORIES';
+const FETCHING_CATEGORIES = 'FETCHING CATEGORIES';
+const FINISHED_FETCHING_CATEGORIES = 'FINISHED FETCHING CATEGORIES';
+// const SIGNATURE_VERIFICATION_RAISED = 'SIGNATURE_VERIFICATION_RAISED';
+// const verificationRaised = (verification) => ({
+//   type: SIGNATURE_VERIFICATION_RAISED,
+//   verification,
+// });
+const fetchingAllCategories = (msg) => ({
+  type: FETCHING_CATEGORIES,
+  msg,
+});
+const finishedFetchingAllCategories = (msg) => ({
+  type: FINISHED_FETCHING_CATEGORIES,
+  msg,
+});
+const AllCategories = (categories) => ({
+  type: ALL_CATEGORIES,
+  categories,
+});
+const fetchAllCategories = () => (dispatch) => {
+  const data = JSON.parse(localStorage.getItem('data'));
+  if (data !== null && Object.keys(data).length !== 0) {
+    dispatch(fetchingAllCategories('fetching categories'));
+    getAllCategories().then((res) => {
+      if (res.data) {
+        dispatch(finishedFetchingAllCategories('finished fetching categories'));
+        dispatch(AllCategories(res.data));
+      } else {
+        localStorage.removeItem('data');
+      }
+    });
+  }
+};
 const NewBookName = (bookName) => ({
   type: NEW_BOOK_NAME,
   bookName,
@@ -25,13 +62,10 @@ const NewBookAuthor = (author) => ({
   type: NEW_BOOK_AUTHOR,
   author,
 });
-const NewBookIsbn = (isbn) => {
-  console.log(isbn);
-  return {
-    type: NEW_BOOK_ISBN,
-    isbn,
-  };
-};
+const NewBookIsbn = (isbn) => ({
+  type: NEW_BOOK_ISBN,
+  isbn,
+});
 const NewBookPages = (pages) => ({
   type: NEW_BOOK_PAGES,
   pages,
@@ -101,6 +135,7 @@ export {
   NewBookAuthor,
   NewBookIsbn,
   NewBookPages,
+  fetchAllCategories,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,
@@ -118,4 +153,7 @@ export {
   NEW_BOOK_AUTHOR,
   NEW_BOOK_ISBN,
   NEW_BOOK_PAGES,
+  ALL_CATEGORIES,
+  FETCHING_CATEGORIES,
+  FINISHED_FETCHING_CATEGORIES,
 };
