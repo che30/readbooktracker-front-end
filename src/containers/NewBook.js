@@ -47,7 +47,6 @@ const NewBook = ({
       <div>
         <BookFilter changeFilter={changeFilter} />
       </div>
-      ,
       <div>
         <form>
           <div>

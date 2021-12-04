@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import sendLoginRequest from '../apirequests/sendLoginRequest';
 import { LogInLogOutState, loginUserEmail, loguserPassword } from '../actions';
+import data from '../helpers/data';
 
 const Login = (props) => {
   const {
@@ -14,6 +15,10 @@ const Login = (props) => {
     isLoggedIn,
     logIn,
   } = props;
+  const token = data();
+  if (token.auth_token) {
+    logIn(true);
+  }
   const handleChange = (e) => {
     if (e.target.id === 'user-email') {
       setEmail(e.target.value);
