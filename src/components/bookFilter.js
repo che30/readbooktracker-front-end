@@ -1,23 +1,25 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
-const YearFilter = ({ changeFilter }) => {
+
+const BookFilter = ({ changeFilter }) => {
   const categories = JSON.parse(localStorage.getItem('categories'));
+  console.log(categories);
   return (
     <div className="categories">
       <label>
         <select className="catFilter py-2 " onChange={(e) => { changeFilter(e.target.value); }}>
-          {categories.map((cat) => (<option key={cat} value={cat}>{cat}</option>))}
+          {categories.map((cat) => (<option key={cat.id} value={cat.name}>{cat.name}</option>))}
         </select>
       </label>
     </div>
 
   );
 };
-YearFilter.defaultProps = {
+BookFilter.defaultProps = {
   changeFilter() {},
 };
-YearFilter.propTypes = {
+BookFilter.propTypes = {
   changeFilter: PropTypes.func,
 };
-export default YearFilter;
+export default BookFilter;
