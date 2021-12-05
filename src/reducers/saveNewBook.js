@@ -15,7 +15,7 @@ const saveNewBookReducer = (state = initialState, action) => {
     case NEW_BOOK_NAME:
       return {
         ...state,
-        name: action.name,
+        name: action.bookName,
       };
     case NEW_BOOK_AUTHOR:
       return {

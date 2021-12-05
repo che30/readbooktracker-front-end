@@ -10,6 +10,8 @@ import {
   NewBookPages,
 } from '../actions';
 import BookFilter from '../components/bookFilter';
+import getCategories from '../helpers/categories';
+import createNewBook from '../apirequests/createBook';
 
 const NewBook = ({
   saveAuthor,
@@ -29,7 +31,6 @@ const NewBook = ({
         saveAuthor(e.target.value);
         break;
       case 'isbn':
-        console.log(e.target.value);
         saveIsbn(e.target.value);
         break;
       case 'pages':
@@ -39,9 +40,15 @@ const NewBook = ({
     }
   };
   const handleSubmit = (e) => {
+    const categories = getCategories();
+    categories.forEach((element) => {
+      if (element.name === filter) {
+        createNewBook(book, element.id).then((res) => console.log(res));
+      }
+      return false;
+    });
     e.preventDefault();
   };
-  console.log(filter);
   return (
     <div>
       <div>
