@@ -25,11 +25,11 @@ const FETCHING_CATEGORIES = 'FETCHING CATEGORIES';
 const FINISHED_FETCHING_CATEGORIES = 'FINISHED FETCHING CATEGORIES';
 const CATEGORY_FILTER = 'FILTER CATEGORY';
 const BOOK_CREATED = 'BOOK CREATED';
-// const SIGNATURE_VERIFICATION_RAISED = 'SIGNATURE_VERIFICATION_RAISED';
-// const verificationRaised = (verification) => ({
-//   type: SIGNATURE_VERIFICATION_RAISED,
-//   verification,
-// });
+const PAGES_READ = 'PAGES_LEFT';
+const pagesRead = (pg)=>({
+type: PAGES_READ,
+pg,
+})
 const bookCreated = (status) => ({
   type: BOOK_CREATED,
   status,
@@ -148,6 +148,7 @@ export {
   fetchAllCategories,
   FilterCategories,
   bookCreated,
+  pagesRead,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,
@@ -170,4 +171,5 @@ export {
   FINISHED_FETCHING_CATEGORIES,
   CATEGORY_FILTER,
   BOOK_CREATED,
+  PAGES_READ,
 };
