@@ -1,38 +1,45 @@
-import React from "react";
-import  propTypes  from PropTypes;
-import { pagesRead } from "../actions";
-import { connect } from "react-redux";
-const newMeasurement = ({savePagesRead,pageRead}) =>{
-  const handleChange = (e) =>{
-    savePagesRead(e.target.value);
-  }
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { pagesRead } from '../actions';
 
-const handleSubmit =(e) =>{
-  e.preventDefault();
-  console.log('it works');
-}
-  return(<>
-  <form>
-    <input type="text" value={pageRead} onChange={handleChange}>
-    </input>
-    <button type="submit" onClick={handleSubmit}>
-      submit
-    </button>
-  </form>
-  </>)
-}
+const newMeasurement = ({ savePagesRead, pgRead }) => {
+  const handleChange = (e) => {
+    savePagesRead(e.target.value);
+  };
+  console.log(pgRead);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  return (
+    <>
+      <form>
+        <input
+          type="text"
+          value={pgRead}
+          onChange={handleChange}
+          placeholder="pages read"
+          id="pages-read"
+        />
+        <button type="submit" onClick={handleSubmit}>
+          submit
+        </button>
+      </form>
+    </>
+  );
+};
 newMeasurement.defaultProps = {
   savePagesRead() {},
-  pageRead: '',
-}
+  pgRead: '',
+};
 newMeasurement.propTypes = {
-  savePagesRead: propTypes.func,
-  pageRead: propTypes.string
-}
-const mapStateProps =(state)=>({
-  pagesRead: state.measurementReducer
-})
-const mapDispatchToProps =(dispatch) =>({
-  savePagesRead: (pg) => dispatch(pagesRead(pg))
-})
-export default connect(mapStateProps, mapDispatchToProps)(newMeasurement)
+  savePagesRead: PropTypes.func,
+  pgRead: PropTypes.string,
+};
+const mapStateProps = (state) => ({
+  pgRead: state.measurementReducer.pagesRead,
+});
+const mapDispatchToProps = (dispatch) => ({
+  savePagesRead: (pg) => dispatch(pagesRead(pg)),
+});
+export default connect(mapStateProps, mapDispatchToProps)(newMeasurement);

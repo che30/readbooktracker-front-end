@@ -5,6 +5,7 @@ import Book from './components/books';
 import Login from './containers/Login';
 import NewBook from './containers/NewBook';
 import NewCategory from './containers/newcategory';
+import NewMeasuement from './containers/NewMeasuement';
 import Signup from './containers/Signup';
 
 const Routes = () => (
@@ -15,7 +16,9 @@ const Routes = () => (
       <Route path="/Book" component={() => <Book created={false} />} />
       <Route path="/Login" component={Login} />
       <Route path="/new-category" component={NewCategory} />
+      <Route path="/new-measurement" component={NewMeasuement} />
       <Route path="/new-book" component={NewBook} />
+
     </Switch>
   </main>
 );

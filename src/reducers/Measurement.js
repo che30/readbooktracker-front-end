@@ -1,17 +1,18 @@
-import { PAGES_READ } from "../actions";
+import { PAGES_READ } from '../actions';
 
 const initialState = {
-  pagesRead: ''
-}
-const measurementReducer = (state = initialState, action) =>{
+  pagesRead: '',
+};
+const measurementReducer = (state = initialState, action) => {
   switch (action.type) {
-    case PAGES_READ :
-      return{
+    case PAGES_READ:
+      console.log(action.pg);
+      return {
         ...state,
-        pagesRead: action.pg
-      }
+        pagesRead: action.pg,
+      };
     default:
-      return state
+      return state;
   }
-}
-export default measurementReducer
+};
+export default measurementReducer;

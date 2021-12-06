@@ -26,10 +26,10 @@ const FINISHED_FETCHING_CATEGORIES = 'FINISHED FETCHING CATEGORIES';
 const CATEGORY_FILTER = 'FILTER CATEGORY';
 const BOOK_CREATED = 'BOOK CREATED';
 const PAGES_READ = 'PAGES_LEFT';
-const pagesRead = (pg)=>({
-type: PAGES_READ,
-pg,
-})
+const pagesRead = (pg) => ({
+  type: PAGES_READ,
+  pg,
+});
 const bookCreated = (status) => ({
   type: BOOK_CREATED,
   status,
