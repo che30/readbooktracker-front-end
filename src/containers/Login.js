@@ -16,7 +16,7 @@ const Login = (props) => {
     logIn,
   } = props;
   const token = data();
-  if (token.auth_token) {
+  if (token !== null && token.auth_token) {
     logIn(true);
   }
   const handleChange = (e) => {
