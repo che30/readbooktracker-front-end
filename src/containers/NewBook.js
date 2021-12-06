@@ -2,7 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import {
+  bookCreated,
   FilterCategories,
   NewBookAuthor,
   NewBookIsbn,
@@ -21,6 +23,7 @@ const NewBook = ({
   book,
   changeFilter,
   filter,
+  created,
 }) => {
   const handleChange = (e) => {
     switch (e.target.id) {
@@ -43,12 +46,22 @@ const NewBook = ({
     const categories = getCategories();
     categories.forEach((element) => {
       if (element.name === filter) {
-        createNewBook(book, element.id).then((res) => console.log(res));
+        createNewBook(book, element.id).then((res) => {
+          console.log(res);
+          created(true);
+        });
       }
       return false;
     });
     e.preventDefault();
   };
+  if (book.created) {
+    return (
+      <div>
+        <Redirect to="/Book" />
+      </div>
+    );
+  }
   return (
     <div>
       <div>
@@ -108,6 +121,7 @@ NewBook.defaultProps = {
   saveIsbn() {},
   saveNbPg() {},
   changeFilter() {},
+  created() {},
   book: {},
   filter: '',
   categories: {},
@@ -119,12 +133,14 @@ NewBook.propTypes = {
   saveIsbn: PropTypes.func,
   saveNbPg: PropTypes.func,
   changeFilter: PropTypes.func,
+  created: PropTypes.func,
   filter: PropTypes.string,
   book: PropTypes.shape({
     name: PropTypes.string,
     author: PropTypes.string,
     isbn: PropTypes.string,
     numberOfPages: PropTypes.number,
+    created: PropTypes.bool.isRequired,
   }),
   categories: PropTypes.shape({
     id: PropTypes.number,
@@ -142,5 +158,6 @@ const mapDispatchToProps = (dispatch) => ({
   saveIsbn: (isbn) => dispatch(NewBookIsbn(isbn)),
   saveNbPg: (pgs) => dispatch(NewBookPages(pgs)),
   changeFilter: (elt) => dispatch(FilterCategories(elt)),
+  created: (status) => dispatch(bookCreated(status)),
 });
 export default connect(mapStateProps, mapDispatchToProps)(NewBook);

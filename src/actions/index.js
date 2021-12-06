@@ -24,11 +24,16 @@ const ALL_CATEGORIES = 'ALL CATEGORIES';
 const FETCHING_CATEGORIES = 'FETCHING CATEGORIES';
 const FINISHED_FETCHING_CATEGORIES = 'FINISHED FETCHING CATEGORIES';
 const CATEGORY_FILTER = 'FILTER CATEGORY';
+const BOOK_CREATED = 'BOOK CREATED';
 // const SIGNATURE_VERIFICATION_RAISED = 'SIGNATURE_VERIFICATION_RAISED';
 // const verificationRaised = (verification) => ({
 //   type: SIGNATURE_VERIFICATION_RAISED,
 //   verification,
 // });
+const bookCreated = (status) => ({
+  type: BOOK_CREATED,
+  status,
+});
 const FilterCategories = (category) => ({
   type: CATEGORY_FILTER,
   category,
@@ -142,6 +147,7 @@ export {
   NewBookPages,
   fetchAllCategories,
   FilterCategories,
+  bookCreated,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,
@@ -163,4 +169,5 @@ export {
   FETCHING_CATEGORIES,
   FINISHED_FETCHING_CATEGORIES,
   CATEGORY_FILTER,
+  BOOK_CREATED,
 };

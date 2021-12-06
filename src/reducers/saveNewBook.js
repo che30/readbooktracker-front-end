@@ -1,4 +1,5 @@
 import {
+  BOOK_CREATED,
   NEW_BOOK_AUTHOR,
   NEW_BOOK_ISBN, NEW_BOOK_NAME,
   NEW_BOOK_PAGES,
@@ -9,6 +10,7 @@ const initialState = {
   author: '',
   isbn: '',
   pages: '',
+  created: false,
 };
 const saveNewBookReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -32,7 +34,11 @@ const saveNewBookReducer = (state = initialState, action) => {
         ...state,
         pages: action.pages,
       };
-
+    case BOOK_CREATED:
+      return {
+        ...state,
+        created: action.status,
+      };
     default:
       return state;
   }
