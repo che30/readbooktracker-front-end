@@ -6,7 +6,6 @@ const initialState = {
 const measurementReducer = (state = initialState, action) => {
   switch (action.type) {
     case PAGES_READ:
-      console.log(action.pg);
       return {
         ...state,
         pagesRead: action.pg,

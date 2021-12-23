@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import {
   bookCreated,
   FilterCategories,
@@ -14,6 +14,7 @@ import {
 import BookFilter from '../components/bookFilter';
 import getCategories from '../helpers/categories';
 import createNewBook from '../apirequests/createBook';
+import Footer from '../components/Footer';
 
 const NewBook = ({
   saveAuthor,
@@ -25,6 +26,7 @@ const NewBook = ({
   filter,
   created,
 }) => {
+  const history = useHistory();
   const handleChange = (e) => {
     switch (e.target.id) {
       case 'name':
@@ -46,8 +48,7 @@ const NewBook = ({
     const categories = getCategories();
     categories.forEach((element) => {
       if (element.name === filter) {
-        createNewBook(book, element.id).then((res) => {
-          console.log(res);
+        createNewBook(book, element.id).then(() => {
           created(true);
         });
       }
@@ -58,6 +59,10 @@ const NewBook = ({
   if (book.created) {
     return (
       <div>
+        <div>
+          {' '}
+          <button type="button" onClick={history.goBack}>Back</button>
+        </div>
         <Redirect to="/Book" />
       </div>
     );
@@ -111,7 +116,10 @@ const NewBook = ({
             submit
           </button>
         </form>
+
       </div>
+      <button type="button" onClick={history.goBack}>Back</button>
+      <Footer />
     </div>
   );
 };

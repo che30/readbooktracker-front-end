@@ -7,6 +7,7 @@ import saveNewBookReducer from './saveNewBook';
 import AllCategories from './AllCategories';
 import bookFilterReducer from './CategoryFilter';
 import measurementReducer from './Measurement';
+import MeasurementFilterReducer from './FilterMeasurementReducer';
 
 const rootReducer = () => combineReducers({
   newUserDetails,
@@ -17,5 +18,6 @@ const rootReducer = () => combineReducers({
   AllCategories,
   bookFilterReducer,
   measurementReducer,
+  MeasurementFilterReducer,
 });
 export default rootReducer;

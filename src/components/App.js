@@ -1,9 +1,9 @@
 import React from 'react';
-// import Signup from './containers/Signup';
+import Footer from './Footer';
 
 const App = () => (
   <div>
-    temporal home
+    <Footer />
   </div>
 );
 

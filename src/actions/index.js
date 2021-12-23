@@ -25,7 +25,12 @@ const FETCHING_CATEGORIES = 'FETCHING CATEGORIES';
 const FINISHED_FETCHING_CATEGORIES = 'FINISHED FETCHING CATEGORIES';
 const CATEGORY_FILTER = 'FILTER CATEGORY';
 const BOOK_CREATED = 'BOOK CREATED';
-const PAGES_READ = 'PAGES_LEFT';
+const PAGES_READ = 'PAGES LEFT';
+const MEASUREMENT_FILTER = 'MEASUREMENT FILTER';
+const FilterMasurement = (elt) => ({
+  type: MEASUREMENT_FILTER,
+  elt,
+});
 const pagesRead = (pg) => ({
   type: PAGES_READ,
   pg,
@@ -149,6 +154,7 @@ export {
   FilterCategories,
   bookCreated,
   pagesRead,
+  FilterMasurement,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,
@@ -172,4 +178,5 @@ export {
   CATEGORY_FILTER,
   BOOK_CREATED,
   PAGES_READ,
+  MEASUREMENT_FILTER,
 };

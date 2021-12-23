@@ -5,9 +5,16 @@ const Book = () => {
   const [book, setBook] = useState([]);
   useEffect(() => {
     getAllBooks().then((res) => {
+      console.log(res);
       setBook(res);
     });
   }, []);
+  if (book.message) {
+    return (
+      <>
+      </>
+    );
+  }
   if (Object.keys(book).length !== 0) {
     return (
       <div>

@@ -1,0 +1,88 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import '../assets/Footer.css';
+
+const Footer = () => (
+  <>
+    <div className="menu d-flex flex-row justify-content-around ">
+      <div className="d-flex  flex-column justify-content-center align-items-center">
+        <div>
+          <NavLink
+            exact
+            to="/new-measurement"
+            className="text-decoration-none
+           text-white main-nav measure "
+            activeClassName="main-nav--active"
+          >
+            <i className="  fa fa-bar-chart" />
+
+          </NavLink>
+        </div>
+        <div>
+          <NavLink
+            exact
+            to="/new-measurement"
+            className="text-decoration-none
+           text-white "
+          >
+            <span className="menu_item_one">
+              Add
+            </span>
+            <span>
+              Measure
+            </span>
+          </NavLink>
+        </div>
+      </div>
+      <div className="d-flex   flex-column justify-content-center align-items-center">
+        <div>
+          <i className="fa fa-pie-chart" />
+        </div>
+        <div>
+          <span className="menu_item_two">
+            Your
+          </span>
+          <span>
+            progress
+          </span>
+        </div>
+      </div>
+      <div className="d-flex flex-column align-items-center  ">
+        <div>
+          <NavLink
+            exact
+            to="/new-book"
+            className="text-decoration-none text-white
+           main-nav book"
+            activeClassName="main-nav--active"
+          >
+            <i className="fa fa-book" />
+          </NavLink>
+        </div>
+        <div>
+          <NavLink
+            exact
+            to="/new-book"
+            className="text-decoration-none text-white"
+          >
+            <span className="menu_item_three">
+              New
+            </span>
+            <span>
+              Book
+            </span>
+          </NavLink>
+        </div>
+      </div>
+      <div className="  d-flex flex-column justify-content-center align-items-center">
+        <div>
+          ...
+        </div>
+        <div>
+          more
+        </div>
+      </div>
+    </div>
+  </>
+);
+export default Footer;

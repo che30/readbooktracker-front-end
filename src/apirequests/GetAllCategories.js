@@ -7,7 +7,6 @@ const getAllCategories = async () => {
       { headers: { Authorization: `Bearer ${data.auth_token}` } });
     return result;
   } catch (error) {
-    console.log('connection error');
     return error;
   }
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { NewCategoryAction, ValidateEr } from '../actions';
 import createNewCategory from '../apirequests/createNewCategory';
 import ErrMsg from './ErrMsg';
@@ -10,13 +11,13 @@ const NewCategory = ({
   categoryName,
   errMsg,
 }) => {
+  const history = useHistory();
   const handleChange = (e) => {
     savecatname(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     createNewCategory(categoryName).then((res) => {
-      console.log(res);
       if (res.status === 200) {
         errMsg(res.data);
       }
@@ -40,6 +41,7 @@ const NewCategory = ({
           submit
         </button>
       </form>
+      <button type="button" onClick={history.goBack}>Back</button>
     </div>
   );
 };
