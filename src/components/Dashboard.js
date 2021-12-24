@@ -1,16 +1,44 @@
-import React, { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import React, { useEffect, useState } from 'react';
+import queryAndCountCategories from '../apirequests/categoiresCount';
+import '../assets/Dashboard.css';
+
+import Progress from './Progress';
 
 const Dashboard = () => {
-  const [value, onChange] = useState(new Date());
-  console.log(value);
+  const [covered, setCovered] = useState(0);
+  useEffect(async () => {
+    const res = await queryAndCountCategories();
+    setCovered(Object.keys(res.data[0]).length);
+  }, []);
+  const stateone = {
+    size: 100,
+    progress: 10,
+    strokeWidth: 10,
+    circleOneStroke: '#d9edfe',
+    circleTwoStroke: '#7ea9e1',
+
+  };
+
   return (
     <div>
-      <Calendar
-        onChange={onChange}
-        value={value}
-      />
+      <div className="d-flex">
+        <Progress
+          size={stateone.size}
+          progress={covered}
+          strokeWidth={stateone.strokeWidth}
+          circleOneStroke={stateone.circleOneStroke}
+          circleTwoStroke={stateone.circleTwoStroke}
+          unit=""
+        />
+        <Progress
+          size={stateone.size}
+          progress={stateone.progress}
+          strokeWidth={stateone.strokeWidth}
+          circleOneStroke={stateone.circleOneStroke}
+          circleTwoStroke={stateone.circleTwoStroke}
+          unit="%"
+        />
+      </div>
     </div>
   );
 };

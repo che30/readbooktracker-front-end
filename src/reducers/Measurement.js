@@ -1,7 +1,10 @@
-import { PAGES_READ } from '../actions';
+import { DATE, PAGES_READ } from '../actions';
 
+// const current = new Date();
+// const date = current.getDate() / current.getMonth() + 1 / current.getFullYear();
 const initialState = {
   pagesRead: '',
+  date: '',
 };
 const measurementReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -9,6 +12,11 @@ const measurementReducer = (state = initialState, action) => {
       return {
         ...state,
         pagesRead: action.pg,
+      };
+    case DATE:
+      return {
+        ...state,
+        date: action.date,
       };
     default:
       return state;

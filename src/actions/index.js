@@ -27,6 +27,12 @@ const CATEGORY_FILTER = 'FILTER CATEGORY';
 const BOOK_CREATED = 'BOOK CREATED';
 const PAGES_READ = 'PAGES LEFT';
 const MEASUREMENT_FILTER = 'MEASUREMENT FILTER';
+const DATE = 'DATE';
+
+const dateEntered = (date) => ({
+  type: DATE,
+  date,
+});
 const FilterMasurement = (elt) => ({
   type: MEASUREMENT_FILTER,
   elt,
@@ -155,6 +161,7 @@ export {
   bookCreated,
   pagesRead,
   FilterMasurement,
+  dateEntered,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,
@@ -179,4 +186,5 @@ export {
   BOOK_CREATED,
   PAGES_READ,
   MEASUREMENT_FILTER,
+  DATE,
 };

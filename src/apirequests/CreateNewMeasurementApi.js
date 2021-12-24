@@ -1,6 +1,6 @@
 import data from '../helpers/data';
 
-const newMeasurementApi = async (pgRead, bookId) => {
+const newMeasurementApi = async (pgRead, bookId, date) => {
   const user = data();
   try {
     const rawResponse = await fetch('http://127.0.0.1:3001/measurments', {
@@ -14,6 +14,7 @@ const newMeasurementApi = async (pgRead, bookId) => {
         pages_read: pgRead,
         book_id: bookId,
         user_id: user.id,
+        date,
       }),
     });
     const content = await rawResponse.json();

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const MeasurementFilter = ({ changeFilter }) => {
   const data = JSON.parse(localStorage.getItem('books'));
+  data.unshift('ALL');
   if (data !== null) {
     return (
       <div>

@@ -1,0 +1,16 @@
+.circular_bg_one{
+  fill: none;
+}
+.circle_bg_two{
+  fill: none;
+}
+.percentage{
+  text-anchor: middle;
+}
+.circular_progress_one{
+  display: flex;
+  flex-direction: row;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5%;
+}
