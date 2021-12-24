@@ -11,7 +11,7 @@
    
 }
 .measure {
-   padding: 2px 40px 100px 55px; 
+   padding: 3px 40px 100px 55px; 
 }
 .menu_item_one {
   padding-right: 5px;
@@ -22,19 +22,13 @@
 .menu_item_three{
   padding-right: 5px;
 }
+.book{
+  padding: 3px 45px 70px 45px;
+}
 @media(max-width: 567px){
-  /* .menu {
-    font-size: 13px;
-  } */
-  .menu_item_one{
-    /* padding-left: 10px; */
-  }
-  .menu_item_two{
-    /* margin-left: 30%; */
-  }
-  .menu_item_three{
-    /* margin-left: 30%; */
-  }
+  .measure {
+    padding: 5px 40px 100px 55px; 
+ }
   .menu_item_width{
     max-width: 50px;
   }

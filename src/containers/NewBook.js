@@ -15,6 +15,7 @@ import BookFilter from '../components/bookFilter';
 import getCategories from '../helpers/categories';
 import createNewBook from '../apirequests/createBook';
 import Footer from '../components/Footer';
+import '../assets/Newbook.css';
 
 const NewBook = ({
   saveAuthor,
@@ -59,6 +60,9 @@ const NewBook = ({
   if (book.created) {
     return (
       <div>
+        <nav className="bg_color_Pantone w-100 text-white text-center">
+          New Book
+        </nav>
         <div>
           {' '}
           <button type="button" onClick={history.goBack}>Back</button>
@@ -69,6 +73,9 @@ const NewBook = ({
   }
   return (
     <div>
+      <nav className="bg_color_Pantone w-100  w-100 text-white text-center p-2">
+        New Book
+      </nav>
       <div>
         <BookFilter changeFilter={changeFilter} />
       </div>
