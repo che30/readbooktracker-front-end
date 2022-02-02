@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import { dateEntered, FilterMasurement, pagesRead } from '../actions';
 import MeasurementFilter from '../components/measurementFilter';
 import getBks from '../helpers/getBooks';
 import newMeasurementApi from '../apirequests/CreateNewMeasurementApi';
 import Footer from '../components/Footer';
 import AlertMeasurement from '../components/AlertMeasurement';
+import data from '../helpers/data';
 
 const newMeasurement = ({
   savePagesRead, pgRead, changeFilter, filter, date, dateEnt,
@@ -32,6 +34,15 @@ const newMeasurement = ({
       return false;
     });
   };
+  const token = data();
+  const decoded = jwtDecode(token.auth_token);
+  if (token === null || decoded.exp < Date.now() / 1000) {
+    return (
+      <>
+        <Redirect to="/Login" />
+      </>
+    );
+  }
   return (
     <>
       <nav className="bg_color_Pantone w-100  w-100 text-white text-center p-2">

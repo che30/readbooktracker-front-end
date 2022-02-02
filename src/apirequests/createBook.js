@@ -1,5 +1,6 @@
 // import axios from 'axios';
 import data from '../helpers/data';
+import ResetStore from '../helpers/ResetLocalStorage';
 
 const createNewBook = async (book, id) => {
   const user = data();
@@ -20,6 +21,7 @@ const createNewBook = async (book, id) => {
       }),
     });
     const content = await rawResponse.json();
+    ResetStore(content);
     return content;
   } catch (error) {
     return error;

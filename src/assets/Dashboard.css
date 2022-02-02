@@ -7,8 +7,21 @@
 .percentage{
   text-anchor: middle;
 }
+.absolute{
+   position: absolute;
+}
+.total__categories_realtive{
+  position: relative;
+  top: 10%;
+  left: 20%;
+}
+.total__measurement_realtive{
+  position: relative;
+  top: 10%;
+  left: 60%;
+}
 .circular_progress_one{
-  display: flex;
+  /* display: flex;  */
   flex-direction: row;
   margin-right: auto;
   margin-left: auto;

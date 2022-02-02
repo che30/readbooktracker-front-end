@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import { NewCategoryAction, ValidateEr } from '../actions';
 import createNewCategory from '../apirequests/createNewCategory';
 import ErrMsg from './ErrMsg';
+import data from '../helpers/data';
 
 const NewCategory = ({
   savecatname,
@@ -24,6 +26,15 @@ const NewCategory = ({
       savecatname('');
     });
   };
+  const token = data();
+  const decoded = jwtDecode(token.auth_token);
+  if (token === null || decoded.exp < Date.now() / 1000) {
+    return (
+      <>
+        <Redirect to="/Login" />
+      </>
+    );
+  }
   return (
     <div>
       <div className="mt-3">

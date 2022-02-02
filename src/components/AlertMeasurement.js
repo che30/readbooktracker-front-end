@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const AlertMeasurement = ({ filter }) => {
   console.log(filter);
-  if (filter === 'ALL') {
+  if (filter === 'AL') {
     return (
       <>
         <div className="alert alert-danger">
