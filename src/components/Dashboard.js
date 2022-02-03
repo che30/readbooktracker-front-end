@@ -43,6 +43,21 @@ const Dashboard = () => {
         currenUserBooksRead.push(element);
       }
     });
+    const currentIsbn = [];
+    currenUserBooksRead.forEach((currentBook) => {
+      books.forEach((book) => {
+        if (currentBook.isbn === book.isbn) {
+          currentIsbn.push(book);
+        }
+      });
+    });
+    currentIsbn.forEach((currentUserIsbn) => {
+      measurements.forEach((measure) => {
+        if (currentUserIsbn.id === measure.book_id) {
+          console.log(currentUserIsbn);
+        }
+      });
+    });
     console.log(currenUserBooksRead);
     setCovered(Object.keys(res.data[0]).length);
   }, []);

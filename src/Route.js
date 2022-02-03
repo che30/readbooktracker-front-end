@@ -7,18 +7,19 @@ import NewBook from './containers/NewBook';
 import NewCategory from './containers/newcategory';
 import NewMeasuement from './containers/NewMeasuement';
 import Signup from './containers/Signup';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const Routes = () => (
 
   <main>
     <Switch>
-      <Route path="/" component={App} exact />
+      <ProtectedRoute path="/" component={App} exact />
       <Route path="/Signup" component={Signup} />
-      <Route path="/Book" component={() => <Book created={false} />} />
+      <ProtectedRoute path="/Book" component={() => <Book created={false} />} />
       <Route path="/Login" component={Login} />
-      <Route path="/new-category" component={NewCategory} />
-      <Route path="/new-measurement" component={NewMeasuement} />
-      <Route path="/new-book" component={NewBook} />
+      <ProtectedRoute path="/new-category" component={NewCategory} />
+      <ProtectedRoute path="/new-measurement" component={NewMeasuement} />
+      <ProtectedRoute path="/new-book" component={NewBook} />
 
     </Switch>
   </main>

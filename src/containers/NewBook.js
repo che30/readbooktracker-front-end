@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect, useHistory } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 import {
   bookCreated,
   FilterCategories,
@@ -16,7 +15,6 @@ import getCategories from '../helpers/categories';
 import createNewBook from '../apirequests/createBook';
 import Footer from '../components/Footer';
 import '../assets/Newbook.css';
-import data from '../helpers/data';
 
 const NewBook = ({
   saveAuthor,
@@ -58,15 +56,6 @@ const NewBook = ({
     });
     e.preventDefault();
   };
-  const token = data();
-  const decoded = jwtDecode(token.auth_token);
-  if (token === null || decoded.exp < Date.now() / 1000) {
-    return (
-      <>
-        <Redirect to="/Login" />
-      </>
-    );
-  }
   if (book.created) {
     return (
       <div>
