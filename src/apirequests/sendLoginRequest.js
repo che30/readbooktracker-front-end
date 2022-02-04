@@ -11,9 +11,6 @@ const sendLoginRequest = async (email, password) => {
       JSON.stringify(result.data));
 
     const token = data();
-    const books = await axios.get('http://127.0.0.1:3001/allbooks',
-      { headers: { Authorization: `Bearer ${token.auth_token}` } });
-    localStorage.setItem('books', JSON.stringify(books.data));
     const cats = await axios.get('http://127.0.0.1:3001/cats',
       { headers: { Authorization: `Bearer ${token.auth_token}` } });
     localStorage.setItem('categories', JSON.stringify(cats.data));

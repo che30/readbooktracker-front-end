@@ -45,15 +45,17 @@ const NewBook = ({
     }
   };
   const handleSubmit = (e) => {
-    const categories = getCategories();
-    categories.forEach((element) => {
-      if (element.name === filter) {
-        createNewBook(book, element.id).then(() => {
-          created(true);
-        });
-      }
-      return false;
+    getCategories().then((res) => {
+      res.forEach((element) => {
+        if (element.name === filter) {
+          createNewBook(book, element.id).then(() => {
+            created(true);
+          });
+        }
+        return false;
+      });
     });
+
     e.preventDefault();
   };
   if (book.created) {

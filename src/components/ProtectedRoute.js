@@ -6,8 +6,6 @@ import jwtDecode from 'jwt-decode';
 import data from '../helpers/data';
 
 const ProtectedRoute = ({ component: Component, ...restOfProps }) => {
-  const test = { ...restOfProps };
-  console.log(test);
   const token = data();
   let decoded;
   if (token !== null) {

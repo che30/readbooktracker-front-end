@@ -5,11 +5,11 @@ import { Redirect, useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import { dateEntered, FilterMasurement, pagesRead } from '../actions';
 import MeasurementFilter from '../components/measurementFilter';
-import getBks from '../helpers/getBooks';
 import newMeasurementApi from '../apirequests/CreateNewMeasurementApi';
 import Footer from '../components/Footer';
 import AlertMeasurement from '../components/AlertMeasurement';
 import data from '../helpers/data';
+import getAllBooks from '../apirequests/GetAllBooks';
 
 const newMeasurement = ({
   savePagesRead, pgRead, changeFilter, filter, date, dateEnt,
@@ -25,13 +25,13 @@ const newMeasurement = ({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const books = getBks();
-    console.log(filter);
-    books.forEach((element) => {
-      if (element.name === filter) {
-        newMeasurementApi(pgRead, element.id, date);
-      }
-      return false;
+    getAllBooks().then((res) => {
+      res.forEach((element) => {
+        if (element.name === filter) {
+          newMeasurementApi(pgRead, element.id, date);
+        }
+        return false;
+      });
     });
   };
   const token = data();
