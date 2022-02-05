@@ -5,6 +5,7 @@ import getCategories from '../helpers/categories';
 
 const BookFilter = ({ changeFilter }) => {
   const categories = getCategories();
+  categories.unshift({ 0: 0, name: 'ALL' });
   return (
     <div className="categories">
       <label>

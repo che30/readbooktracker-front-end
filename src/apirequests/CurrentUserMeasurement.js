@@ -1,14 +1,16 @@
+import jwtDecode from 'jwt-decode';
 import data from '../helpers/data';
 
 const CurrentUserMeasurement = async () => {
-  const user = data();
+  const token = data();
+  const decoded = jwtDecode(token.auth_token);
   try {
-    const rawResponse = await fetch(`http://127.0.0.1:3001/users/:${user.id}/measurments`, {
+    const rawResponse = await fetch(`http://127.0.0.1:3001/users/:${decoded.user_id}/measurments`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.auth_token}`,
+        Authorization: `Bearer ${token.auth_token}`,
       },
     });
     const content = await rawResponse.json();

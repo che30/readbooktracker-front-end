@@ -1,18 +1,16 @@
 import axios from 'axios';
-import data from '../helpers/data';
 
 const sendLoginRequest = async (email, password) => {
+  let result;
   try {
-    const result = await axios.post('http://127.0.0.1:3001/auth/login', {
+    result = await axios.post('http://127.0.0.1:3001/auth/login', {
       email,
       password,
     });
-    localStorage.setItem('data',
-      JSON.stringify(result.data));
-
-    const token = data();
+    localStorage.setItem('auth_token',
+      JSON.stringify(result.data.auth_token));
     const cats = await axios.get('http://127.0.0.1:3001/cats',
-      { headers: { Authorization: `Bearer ${token.auth_token}` } });
+      { headers: { Authorization: `Bearer ${result.data.auth_token}` } });
     localStorage.setItem('categories', JSON.stringify(cats.data));
     return result;
   } catch (error) {

@@ -44,20 +44,19 @@ const NewBook = ({
       default:
     }
   };
-  const handleSubmit = (e) => {
-    getCategories().then((res) => {
-      res.forEach((element) => {
-        if (element.name === filter) {
-          createNewBook(book, element.id).then(() => {
-            created(true);
-          });
-        }
-        return false;
-      });
-    });
-
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const final = await getCategories();
+    console.log(final);
+    final.forEach((element) => {
+      if (element.name === filter) {
+        createNewBook(book, element.id).then(() => {
+          created(true);
+        });
+      }
+    });
   };
+  // console.log(book);
   if (book.created) {
     return (
       <div>

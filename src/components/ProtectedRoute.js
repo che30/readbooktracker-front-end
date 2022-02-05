@@ -3,14 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import data from '../helpers/data';
 
 const ProtectedRoute = ({ component: Component, ...restOfProps }) => {
-  const token = data();
+  const token = JSON.parse(localStorage.getItem('auth_token'));
   let decoded;
   if (token !== null) {
-    decoded = jwtDecode(token.auth_token);
+    decoded = jwtDecode(token);
   }
+  console.log(decoded);
   if (token === null || decoded.exp < Date.now() / 1000) {
     return (
       <Route
