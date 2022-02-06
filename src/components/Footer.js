@@ -9,7 +9,7 @@ const Footer = () => (
         <div>
           <NavLink
             exact
-            to="/new-measurement"
+            to="/books"
             className="text-decoration-none
            text-white main-nav measure "
             activeClassName="main-nav--active"
@@ -21,15 +21,15 @@ const Footer = () => (
         <div>
           <NavLink
             exact
-            to="/new-measurement"
+            to="/books"
             className="text-decoration-none
            text-white "
           >
             <span className="menu_item_one">
-              Add
+              All
             </span>
             <span>
-              Measure
+              Books
             </span>
           </NavLink>
         </div>

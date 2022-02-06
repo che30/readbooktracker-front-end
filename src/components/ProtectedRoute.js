@@ -10,7 +10,6 @@ const ProtectedRoute = ({ component: Component, ...restOfProps }) => {
   if (token !== null) {
     decoded = jwtDecode(token);
   }
-  console.log(decoded);
   if (token === null || decoded.exp < Date.now() / 1000) {
     return (
       <Route

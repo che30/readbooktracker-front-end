@@ -25,7 +25,7 @@ const FETCHING_CATEGORIES = 'FETCHING CATEGORIES';
 const FINISHED_FETCHING_CATEGORIES = 'FINISHED FETCHING CATEGORIES';
 const CATEGORY_FILTER = 'FILTER CATEGORY';
 const BOOK_CREATED = 'BOOK CREATED';
-const PAGES_READ = 'PAGES LEFT';
+const PAGES_READ = 'PAGES READ';
 const MEASUREMENT_FILTER = 'MEASUREMENT FILTER';
 const DATE = 'DATE';
 
@@ -33,10 +33,13 @@ const dateEntered = (date) => ({
   type: DATE,
   date,
 });
-const FilterMasurement = (elt) => ({
-  type: MEASUREMENT_FILTER,
-  elt,
-});
+const FilterMasurement = (elt) => {
+  console.log(elt);
+  return ({
+    type: MEASUREMENT_FILTER,
+    elt,
+  });
+};
 const pagesRead = (pg) => ({
   type: PAGES_READ,
   pg,

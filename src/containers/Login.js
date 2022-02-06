@@ -12,7 +12,6 @@ const Login = (props) => {
     password,
     setPassword,
     setEmail,
-    isLoggedIn,
     logIn,
   } = props;
   const token = data();
@@ -30,13 +29,11 @@ const Login = (props) => {
     e.preventDefault();
     if ((email !== '') && (password !== '')) {
       sendLoginRequest(email, password).then((res) => {
-        if (res.status === 200) {
-          logIn(true);
-        }
+        console.log(res);
       });
     }
   };
-  if (isLoggedIn) {
+  if (JSON.parse(localStorage.getItem('auth_token'))) {
     return <Redirect to="/" />;
   }
   return (
@@ -83,7 +80,6 @@ Login.propTypes = {
   logIn: PropTypes.func,
   email: PropTypes.string,
   password: PropTypes.string,
-  isLoggedIn: PropTypes.bool.isRequired,
 };
 const mapStateProps = (state) => ({
   email: state.LoginUser.email,

@@ -1,16 +1,15 @@
 import jwtDecode from 'jwt-decode';
-import data from '../helpers/data';
 
 const newMeasurementApi = async (pgRead, bookId, date) => {
-  const token = data();
-  const decoded = jwtDecode(token.auth_token);
+  const token = JSON.parse(localStorage.getItem('auth_token'));
+  const decoded = jwtDecode(token);
   try {
     const rawResponse = await fetch('http://127.0.0.1:3001/measurments', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token.auth_token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         pages_read: pgRead,
@@ -20,7 +19,6 @@ const newMeasurementApi = async (pgRead, bookId, date) => {
       }),
     });
     const content = await rawResponse.json();
-    console.log(content);
     return content;
   } catch (error) {
     return error;

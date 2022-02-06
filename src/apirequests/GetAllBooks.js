@@ -1,6 +1,5 @@
 const getAllBooks = async () => {
   const token = JSON.parse(localStorage.getItem('auth_token'));
-  console.log(token);
   try {
     const rawResponse = await fetch('http://127.0.0.1:3001/allbooks', {
       method: 'GET',

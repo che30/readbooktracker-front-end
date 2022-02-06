@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AlertMeasurement = ({ filter }) => {
-  console.log(filter);
   if (filter === 'AL') {
     return (
       <>

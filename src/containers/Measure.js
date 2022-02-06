@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
-import { dateEntered, FilterMasurement, pagesRead } from '../actions';
-import MeasurementFilter from '../components/measurementFilter';
+import { dateEntered, pagesRead } from '../actions';
 import newMeasurementApi from '../apirequests/CreateNewMeasurementApi';
 import Footer from '../components/Footer';
-import AlertMeasurement from '../components/AlertMeasurement';
-import data from '../helpers/data';
-import getAllBooks from '../apirequests/GetAllBooks';
+import Navbar from '../components/Navbar';
 
-const newMeasurement = ({
-  savePagesRead, pgRead, changeFilter, filter, date, dateEnt,
-}) => {
+const Measure = (props) => {
+  const {
+    location, savePagesRead, pgRead, date, dateEnt,
+  } = props;
+  const [status, setStatus] = useState(false);
   const history = useHistory();
   const handleChange = (e) => {
     if (e.target.id === 'pages-read') {
@@ -25,31 +23,25 @@ const newMeasurement = ({
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    getAllBooks().then((res) => {
-      res.forEach((element) => {
-        if (element.name === filter) {
-          newMeasurementApi(pgRead, element.id, date);
-        }
-        return false;
-      });
+    newMeasurementApi(pgRead, location.state.id,
+      date).then((data) => {
+      console.log(Object.keys(data).length);
+      if (Object.keys(data).length === 8) {
+        setStatus(true);
+      }
+      console.log(data);
     });
   };
-  const token = data();
-  const decoded = jwtDecode(token.auth_token);
-  if (token === null || decoded.exp < Date.now() / 1000) {
+  if (status === true) {
     return (
       <>
-        <Redirect to="/Login" />
+        <Redirect to="/books" />
       </>
     );
   }
   return (
-    <>
-      <nav className="bg_color_Pantone w-100  w-100 text-white text-center p-2">
-        New Measurement
-      </nav>
-      <AlertMeasurement filter={filter} />
-      <MeasurementFilter changeFilter={changeFilter} />
+    <div>
+      <Navbar />
       <form>
         <input
           type="text"
@@ -71,32 +63,36 @@ const newMeasurement = ({
       </form>
       <button type="button" onClick={history.goBack}>Back</button>
       <Footer />
-    </>
+    </div>
   );
 };
-newMeasurement.defaultProps = {
+Measure.defaultProps = {
+  location: {},
   savePagesRead() {},
-  changeFilter() {},
   dateEnt() {},
   pgRead: '',
-  filter: 'ALL',
   date: '',
 };
-newMeasurement.propTypes = {
+Measure.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      authord: PropTypes.string.isRequired,
+      isbn: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  }),
   savePagesRead: PropTypes.func,
-  changeFilter: PropTypes.func,
   dateEnt: PropTypes.func,
   pgRead: PropTypes.string,
-  filter: PropTypes.string,
+  date: PropTypes.string,
 };
 const mapStateProps = (state) => ({
   pgRead: state.measurementReducer.pagesRead,
-  filter: state.MeasurementFilterReducer,
   date: state.measurementReducer.date,
 });
 const mapDispatchToProps = (dispatch) => ({
   savePagesRead: (pg) => dispatch(pagesRead(pg)),
-  changeFilter: (elt) => dispatch(FilterMasurement(elt)),
   dateEnt: (date) => dispatch(dateEntered(date)),
 });
-export default connect(mapStateProps, mapDispatchToProps)(newMeasurement);
+export default connect(mapStateProps, mapDispatchToProps)(Measure);
