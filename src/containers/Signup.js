@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import {
   accountBeignCreated,
-  LogInLogOutState,
+  loginSuccessAction,
   setNewUserEmail,
   setNewUserName,
   setNewUserPassword,
@@ -65,7 +65,7 @@ const signUp = ({
     // typedMovie('');
   };
   useEffect(() => {
-    const cred = JSON.parse(localStorage.getItem('data'));
+    const cred = JSON.parse(localStorage.getItem('auth_token'));
     if ((cred !== null) && Object.keys(cred).length !== 0) {
       updateStatus(true);
     }
@@ -166,7 +166,7 @@ const mapStateProps = (state) => ({
 
 });
 const mapDispatchToProps = (dispatch) => ({
-  updateStatus: (status) => dispatch(LogInLogOutState(status)),
+  updateStatus: (status) => dispatch(loginSuccessAction(status)),
   storeUserName: (username) => dispatch(setNewUserName(username)),
   storeUserEmail: (email) => dispatch(setNewUserEmail(email)),
   storeUserPassword: (password) => dispatch(setNewUserPassword(password)),

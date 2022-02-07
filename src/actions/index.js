@@ -1,7 +1,4 @@
 // const CREATE_USER = 'CREATE USER'
-
-import getAllCategories from '../apirequests/GetAllCategories';
-
 // const SIGN_IN_USER = 'SIGN IN USER'
 const SET_NEW_USER_NAME = 'NEW USER NAME';
 const SET_NEW_USER_EMAIL = 'NEW USER EMAIL';
@@ -14,21 +11,19 @@ const LOGIN_USER_PASSWORD = 'LOGIN_USER_PASSWORD';
 const LOGIN_USER_AUTH = 'LOGIN_USER_AUTH';
 const YOUR_ACCOUNT_IS_CREATED = 'YOUR ACCOUNT CREATED';
 const VALIDATION_ERROR = 'VALIDATION_ERROR';
-const LOG_IN_LOG_OUT_STATE = 'LOG IN LOG OUT STATE';
 const NEW_CATEGORY = 'NEW CATEGORY';
 const NEW_BOOK_NAME = 'NEW BOOK NAME';
 const NEW_BOOK_AUTHOR = 'NEW BOOK AUTHOR';
 const NEW_BOOK_ISBN = 'NEW BOOK ISBN';
 const NEW_BOOK_PAGES = 'NEW BOOK PAGES';
 const ALL_CATEGORIES = 'ALL CATEGORIES';
-const FETCHING_CATEGORIES = 'FETCHING CATEGORIES';
-const FINISHED_FETCHING_CATEGORIES = 'FINISHED FETCHING CATEGORIES';
 const CATEGORY_FILTER = 'FILTER CATEGORY';
 const BOOK_CREATED = 'BOOK CREATED';
 const PAGES_READ = 'PAGES READ';
 const MEASUREMENT_FILTER = 'MEASUREMENT FILTER';
 const DATE = 'DATE';
-
+const SUCCESSFUL_LOGIN = 'SUCCESSFUL LOGIN';
+const UN_SUCCESSFUL_LOGIN = 'UNSUCCESSFUL LOGIN';
 const dateEntered = (date) => ({
   type: DATE,
   date,
@@ -52,32 +47,6 @@ const FilterCategories = (category) => ({
   type: CATEGORY_FILTER,
   category,
 });
-const fetchingAllCategories = (msg) => ({
-  type: FETCHING_CATEGORIES,
-  msg,
-});
-const finishedFetchingAllCategories = (msg) => ({
-  type: FINISHED_FETCHING_CATEGORIES,
-  msg,
-});
-const AllCategories = (categories) => ({
-  type: ALL_CATEGORIES,
-  categories,
-});
-const fetchAllCategories = () => (dispatch) => {
-  const data = JSON.parse(localStorage.getItem('data'));
-  if (data !== null && Object.keys(data).length !== 0) {
-    dispatch(fetchingAllCategories('fetching categories'));
-    getAllCategories().then((res) => {
-      if (res.data) {
-        dispatch(finishedFetchingAllCategories('finished fetching categories'));
-        dispatch(AllCategories(res.data));
-      } else {
-        localStorage.removeItem('data');
-      }
-    });
-  }
-};
 const NewBookName = (bookName) => ({
   type: NEW_BOOK_NAME,
   bookName,
@@ -97,10 +66,6 @@ const NewBookPages = (pages) => ({
 const NewCategoryAction = (cat) => ({
   type: NEW_CATEGORY,
   cat,
-});
-const LogInLogOutState = (status) => ({
-  type: LOG_IN_LOG_OUT_STATE,
-  status,
 });
 const ValidateEr = (error) => ({
   type: VALIDATION_ERROR,
@@ -142,6 +107,14 @@ const saveCreatedUser = (details) => ({
   type: SAVE_CREATED_USER_DETAILS,
   details,
 });
+const loginSuccessAction = (status) => ({
+  type: SUCCESSFUL_LOGIN,
+  status,
+});
+const unsucessfulLoginAction = (status) => ({
+  type: UN_SUCCESSFUL_LOGIN,
+  status,
+});
 export {
   saveCreatedUser,
   setNewUserName,
@@ -153,18 +126,18 @@ export {
   loginUserEmail,
   accountBeignCreated,
   ValidateEr,
-  LogInLogOutState,
   NewCategoryAction,
   NewBookName,
   NewBookAuthor,
   NewBookIsbn,
   NewBookPages,
-  fetchAllCategories,
   FilterCategories,
   bookCreated,
   pagesRead,
   FilterMasurement,
   dateEntered,
+  loginSuccessAction,
+  unsucessfulLoginAction,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,
@@ -176,18 +149,17 @@ export {
   SAVE_CREATED_USER_DETAILS,
   YOUR_ACCOUNT_IS_CREATED,
   VALIDATION_ERROR,
-  LOG_IN_LOG_OUT_STATE,
   NEW_CATEGORY,
   NEW_BOOK_NAME,
   NEW_BOOK_AUTHOR,
   NEW_BOOK_ISBN,
   NEW_BOOK_PAGES,
   ALL_CATEGORIES,
-  FETCHING_CATEGORIES,
-  FINISHED_FETCHING_CATEGORIES,
   CATEGORY_FILTER,
   BOOK_CREATED,
   PAGES_READ,
   MEASUREMENT_FILTER,
   DATE,
+  SUCCESSFUL_LOGIN,
+  UN_SUCCESSFUL_LOGIN,
 };

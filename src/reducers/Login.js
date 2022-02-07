@@ -1,7 +1,8 @@
 import {
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
-  LOG_IN_LOG_OUT_STATE,
+  SUCCESSFUL_LOGIN,
+  UN_SUCCESSFUL_LOGIN,
 
 } from '../actions';
 
@@ -9,6 +10,7 @@ const initialState = {
   email: '',
   password: '',
   loggedIn: false,
+  unsucceful: false,
 };
 
 const LoginUser = (state = initialState, action) => {
@@ -23,10 +25,15 @@ const LoginUser = (state = initialState, action) => {
         ...state,
         password: action.password,
       };
-    case LOG_IN_LOG_OUT_STATE:
+    case SUCCESSFUL_LOGIN:
       return {
         ...state,
         loggedIn: action.status,
+      };
+    case UN_SUCCESSFUL_LOGIN:
+      return {
+        ...state,
+        unsucceful: action.status,
       };
     default:
       return state;
