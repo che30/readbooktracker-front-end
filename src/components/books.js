@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import getAllBooks from '../apirequests/GetAllBooks';
 
 const Book = () => {
+  const history = useHistory;
   const [book, setBook] = useState([]);
   useEffect(() => {
     getAllBooks().then((res) => {
@@ -48,13 +50,15 @@ const Book = () => {
             </li>
           </ul>
         ))}
-
+        <div className="mx-auto text-center">
+          <button type="button" onClick={history.goBack}>Back</button>
+        </div>
       </div>
     );
   }
   return (
-    <div>
-      no books yet
+    <div className="text-center">
+      Fetching books
     </div>
   );
 };

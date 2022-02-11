@@ -25,7 +25,6 @@ const Measure = (props) => {
     e.preventDefault();
     newMeasurementApi(pgRead, location.state.id,
       date).then((data) => {
-      console.log(Object.keys(data).length);
       if (Object.keys(data).length === 8) {
         setStatus(true);
       }
@@ -42,24 +41,32 @@ const Measure = (props) => {
   return (
     <div>
       <Navbar />
-      <form>
-        <input
-          type="text"
-          value={pgRead}
-          onChange={handleChange}
-          placeholder="pages read"
-          id="pages-read"
-        />
-        <input
-          type="date"
-          value={date}
-          onChange={handleChange}
-          placeholder="pages read"
-          id="date"
-        />
-        <button type="submit" onClick={handleSubmit}>
-          submit
-        </button>
+      <form className="w-75 mx-auto mt-3">
+        <div>
+          <input
+            type="text"
+            value={pgRead}
+            onChange={handleChange}
+            placeholder="pages read"
+            id="pages-read"
+            className="w-100"
+          />
+        </div>
+        <div>
+          <input
+            type="date"
+            value={date}
+            onChange={handleChange}
+            placeholder="pages read"
+            id="date"
+            className="w-100"
+          />
+        </div>
+        <div className="mx-auto text-center">
+          <button type="submit" onClick={handleSubmit}>
+            submit
+          </button>
+        </div>
       </form>
       <button type="button" onClick={history.goBack}>Back</button>
       <Footer />

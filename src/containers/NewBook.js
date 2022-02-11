@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect, useHistory } from 'react-router-dom';
@@ -11,10 +11,10 @@ import {
   NewBookPages,
 } from '../actions';
 import BookFilter from '../components/bookFilter';
-import getCategories from '../helpers/categories';
 import createNewBook from '../apirequests/createBook';
 import Footer from '../components/Footer';
 import '../assets/Newbook.css';
+import getAllCategories from '../apirequests/GetAllCategories';
 
 const NewBook = ({
   saveAuthor,
@@ -27,6 +27,7 @@ const NewBook = ({
   created,
 }) => {
   const history = useHistory();
+  const [alertMessage, setAlertMessage] = useState();
   const handleChange = (e) => {
     switch (e.target.id) {
       case 'name':
@@ -46,15 +47,20 @@ const NewBook = ({
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const final = await getCategories();
-    console.log(final);
-    final.forEach((element) => {
-      if (element.name === filter) {
-        createNewBook(book, element.id).then(() => {
-          created(true);
-        });
-      }
-    });
+    if (book.author !== '' && book.isbn !== '' && book.pages !== '') {
+      const final = await getAllCategories();
+      console.log(book);
+      final.data.forEach((element) => {
+        console.log(filter);
+        if (element.name === filter) {
+          createNewBook(book, element.id).then(() => {
+            created(true);
+          });
+        }
+      });
+    } else {
+      setAlertMessage('ALL FIELDS MUST BE FILLED ');
+    }
   };
   // console.log(book);
   if (book.created) {
@@ -76,13 +82,17 @@ const NewBook = ({
       <nav className="bg_color_Pantone w-100  w-100 text-white text-center p-2">
         New Book
       </nav>
-      <div>
+      <div className="text-center">
+        {alertMessage}
+      </div>
+      <div className="text-center w-100">
         <BookFilter changeFilter={changeFilter} />
       </div>
       <div>
-        <form>
+        <form className="mx-auto w-75">
           <div>
             <input
+              className="w-100"
               type="text"
               id="name"
               placeholder="name"
@@ -92,6 +102,7 @@ const NewBook = ({
           </div>
           <div>
             <input
+              className="w-100"
               type="text"
               id="author"
               placeholder="author"
@@ -102,6 +113,7 @@ const NewBook = ({
 
           <div>
             <input
+              className="w-100"
               type="text"
               id="isbn"
               placeholder="ISBN"
@@ -112,6 +124,7 @@ const NewBook = ({
 
           <div>
             <input
+              className="w-100"
               type="text"
               id="pages"
               placeholder="number of pages"
@@ -119,13 +132,17 @@ const NewBook = ({
               onChange={handleChange}
             />
           </div>
-          <button type="submit" onClick={handleSubmit}>
-            submit
-          </button>
+          <div className="text-center mx-auto">
+            <button type="submit" onClick={handleSubmit}>
+              submit
+            </button>
+          </div>
         </form>
 
       </div>
-      <button type="button" onClick={history.goBack}>Back</button>
+      <div className="mx-auto mt-5 w-50 text-center">
+        <button type="button" onClick={history.goBack}>Back</button>
+      </div>
       <Footer />
     </div>
   );
@@ -154,6 +171,7 @@ NewBook.propTypes = {
     name: PropTypes.string,
     author: PropTypes.string,
     isbn: PropTypes.string,
+    pages: PropTypes.number,
     numberOfPages: PropTypes.number,
     created: PropTypes.bool.isRequired,
   }),
