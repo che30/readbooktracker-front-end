@@ -12,7 +12,6 @@ const Dashboard = () => {
   const timeStamp = new Date().getTime();
   const yesterdayTimeStamp = timeStamp - 24 * 60 * 60 * 1000;
   const yesterdayDate = new Date(yesterdayTimeStamp).toISOString();
-  console.log(yesterdayDate);
   const [books, setBooks] = useState();
   const [finished, setFinished] = useState(false);
   const [measurments, setMeasurements] = useState();

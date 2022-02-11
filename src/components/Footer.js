@@ -75,12 +75,16 @@ const Footer = () => (
         </div>
       </div>
       <div className="  d-flex flex-column justify-content-center align-items-center">
-        <div>
-          ...
-        </div>
-        <div>
-          more
-        </div>
+
+        <NavLink
+          exact
+          to="/"
+          className="text-decoration-none text-white"
+        >
+          <div className="menu_item_three">
+            Dashboard
+          </div>
+        </NavLink>
       </div>
     </div>
   </>

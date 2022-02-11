@@ -24,6 +24,10 @@ const MEASUREMENT_FILTER = 'MEASUREMENT FILTER';
 const DATE = 'DATE';
 const SUCCESSFUL_LOGIN = 'SUCCESSFUL LOGIN';
 const UN_SUCCESSFUL_LOGIN = 'UNSUCCESSFUL LOGIN';
+const SET_BOOKS__FROM_API = 'BOOKS FROM API';
+const SET_FINISHED_STATUS = 'FINISHED STATUS';
+const SET_MEASUREMENT = 'MEASUREMENT';
+const SET_MEASUREMENT_STAT = 'MEASURMENT STAT';
 const dateEntered = (date) => ({
   type: DATE,
   date,
@@ -115,6 +119,22 @@ const unsucessfulLoginAction = (status) => ({
   type: UN_SUCCESSFUL_LOGIN,
   status,
 });
+const setBooksFromApi = (books) => ({
+  type: SET_BOOKS__FROM_API,
+  books
+})
+const setFinishedStaus = (status) => ({
+  type: SET_FINISHED_STATUS,
+  status,
+})
+const setMeasurementApi = (measurment) => ({
+  type: SET_MEASUREMENT,
+  measurment,
+})
+const setMeasurementStatus = (status) => ({
+  type: SET_FINISHED_STATUS,
+  status,
+})
 export {
   saveCreatedUser,
   setNewUserName,
@@ -138,6 +158,10 @@ export {
   dateEntered,
   loginSuccessAction,
   unsucessfulLoginAction,
+  setBooksFromApi ,
+  setFinishedStaus,
+  setMeasurementApi,
+  setMeasurementStatus,
   LOGIN_USER_EMAIL,
   LOGIN_USER_PASSWORD,
   LOGIN_USER_AUTH,
@@ -162,4 +186,8 @@ export {
   DATE,
   SUCCESSFUL_LOGIN,
   UN_SUCCESSFUL_LOGIN,
+  SET_BOOKS__FROM_API,
+  SET_FINISHED_STATUS,
+  SET_MEASUREMENT,
+  SET_FINISHED_STATUS,
 };

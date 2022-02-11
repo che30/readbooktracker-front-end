@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 const App = () => (
 
   <div>
-    <Navbar />
+    <Navbar allbooks="Dashboard" />
     <Dashboard />
     <Footer />
   </div>

@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import getAllBooks from '../apirequests/GetAllBooks';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+import Footer from './Footer';
+import Navbar from './Navbar';
 
 const AllBooks = () => {
   const [book, setBook] = useState();
@@ -18,8 +18,8 @@ const AllBooks = () => {
   if (isloading) {
     return (
       <>
-        <Navbar />
-        <div>
+        <Navbar allbooks="ALL BOOKS" />
+        <div className="text-center">
           Loading data
         </div>
         <Footer />
@@ -29,7 +29,7 @@ const AllBooks = () => {
   if (book === null) {
     return (
       <>
-        <Navbar />
+        <Navbar allbooks="ALL BOOKS" />
         <div>
           <div>
             No books yet
@@ -44,7 +44,7 @@ const AllBooks = () => {
   }
   return (
     <div>
-      <Navbar />
+      <Navbar allbooks="ALL BOOKS" />
       { book.map((elt) => (
         <Link
           to={{
