@@ -28,7 +28,6 @@ const Measure = (props) => {
       if (Object.keys(data).length === 8) {
         setStatus(true);
       }
-      console.log(data);
     });
   };
   if (status === true) {

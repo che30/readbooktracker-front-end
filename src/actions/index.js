@@ -32,13 +32,10 @@ const dateEntered = (date) => ({
   type: DATE,
   date,
 });
-const FilterMasurement = (elt) => {
-  console.log(elt);
-  return ({
-    type: MEASUREMENT_FILTER,
-    elt,
-  });
-};
+const FilterMasurement = (elt) => ({
+  type: MEASUREMENT_FILTER,
+  elt,
+});
 const pagesRead = (pg) => ({
   type: PAGES_READ,
   pg,
@@ -121,20 +118,20 @@ const unsucessfulLoginAction = (status) => ({
 });
 const setBooksFromApi = (books) => ({
   type: SET_BOOKS__FROM_API,
-  books
-})
+  books,
+});
 const setFinishedStaus = (status) => ({
   type: SET_FINISHED_STATUS,
   status,
-})
+});
 const setMeasurementApi = (measurment) => ({
   type: SET_MEASUREMENT,
   measurment,
-})
+});
 const setMeasurementStatus = (status) => ({
-  type: SET_FINISHED_STATUS,
+  type: SET_MEASUREMENT_STAT,
   status,
-})
+});
 export {
   saveCreatedUser,
   setNewUserName,
@@ -158,7 +155,7 @@ export {
   dateEntered,
   loginSuccessAction,
   unsucessfulLoginAction,
-  setBooksFromApi ,
+  setBooksFromApi,
   setFinishedStaus,
   setMeasurementApi,
   setMeasurementStatus,
@@ -189,5 +186,5 @@ export {
   SET_BOOKS__FROM_API,
   SET_FINISHED_STATUS,
   SET_MEASUREMENT,
-  SET_FINISHED_STATUS,
+  SET_MEASUREMENT_STAT,
 };

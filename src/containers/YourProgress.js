@@ -1,4 +1,4 @@
-const YourProgress = () =>{
-  
-}
+const YourProgress = () => {
+
+};
 export default YourProgress;

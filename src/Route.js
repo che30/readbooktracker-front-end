@@ -7,7 +7,7 @@ import NewBook from './containers/NewBook';
 import NewCategory from './containers/newcategory';
 import Signup from './containers/Signup';
 import ProtectedRoute from './components/ProtectedRoute';
-import AllBooks from './containers/AllBooks';
+import AllBooks from './components/AllBooks';
 import Measure from './containers/Measure';
 
 const Routes = () => (

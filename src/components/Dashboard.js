@@ -1,10 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import CurrentUserMeasurement from '../apirequests/CurrentUserMeasurement';
 import getAllBooks from '../apirequests/GetAllBooks';
 import Progress from './Progress';
 import '../assets/Dashboard.css';
+import {
+  setBooksFromApi, setFinishedStaus, setMeasurementApi, setMeasurementStatus,
+} from '../actions';
 
-const Dashboard = () => {
+const Dashboard = ({
+  books,
+  finished,
+  measurments,
+  measureStatus,
+  bookfetch,
+  bookFetchComplete,
+  measurementFetch,
+  measurmentComplete,
+}) => {
   const testvar = [];
   const todayMeasureMents = [];
   const yesterdayMeasurement = [];
@@ -12,24 +26,20 @@ const Dashboard = () => {
   const timeStamp = new Date().getTime();
   const yesterdayTimeStamp = timeStamp - 24 * 60 * 60 * 1000;
   const yesterdayDate = new Date(yesterdayTimeStamp).toISOString();
-  const [books, setBooks] = useState();
-  const [finished, setFinished] = useState(false);
-  const [measurments, setMeasurements] = useState();
-  const [measureStatus, setMeasuredStatus] = useState(false);
   useEffect(async () => {
     const data = await getAllBooks();
     const measurement = await CurrentUserMeasurement();
     if ((data !== undefined) && (Object.keys(data[0]).length === 9)) {
-      setBooks(data);
+      bookfetch(data);
     }
     if (measurement !== undefined) {
-      setMeasurements(measurement);
+      measurementFetch(measurement);
     }
     if (data !== undefined) {
-      setMeasuredStatus(true);
+      measurmentComplete(true);
     }
     if (measurement !== undefined) {
-      setFinished(true);
+      bookFetchComplete(true);
     }
   }, []);
   const ids = {};
@@ -84,7 +94,6 @@ const Dashboard = () => {
     }
     return '';
   };
-  // console.log(todayMeasureMents);
   if (finished) {
     return (
       <div>
@@ -212,4 +221,42 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+Dashboard.defaultProps = {
+  bookFetchComplete() {},
+  bookfetch() {},
+  measurementFetch() {},
+  measurmentComplete() {},
+  books: [],
+  measurments: [],
+};
+Dashboard.propTypes = {
+  bookFetchComplete: PropTypes.func,
+  bookfetch: PropTypes.func,
+  measurementFetch: PropTypes.func,
+  measurmentComplete: PropTypes.func,
+  finished: PropTypes.bool.isRequired,
+  measureStatus: PropTypes.bool.isRequired,
+  books: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    number_of_pages: PropTypes.number.isRequired,
+    isbn: PropTypes.string,
+  })),
+  measurments: PropTypes.arrayOf(PropTypes.shape({
+    pages_read: PropTypes.number,
+    book_id: PropTypes.number,
+    created_at: PropTypes.string,
+  })),
+};
+const mapStateProps = (state) => ({
+  books: state.DashboardReducer.books,
+  finished: state.DashboardReducer.finished,
+  measurments: state.DashboardReducer.measurements,
+  measureStatus: state.DashboardReducer.measurmentStatus,
+});
+const mapDispatchToProps = (dispatch) => ({
+  bookfetch: (result) => dispatch(setBooksFromApi(result)),
+  bookFetchComplete: (res) => dispatch(setMeasurementStatus(res)),
+  measurementFetch: (res) => dispatch(setMeasurementApi(res)),
+  measurmentComplete: (res) => dispatch(setFinishedStaus(res)),
+});
+export default connect(mapStateProps, mapDispatchToProps)(Dashboard);

@@ -49,9 +49,7 @@ const NewBook = ({
     e.preventDefault();
     if (book.author !== '' && book.isbn !== '' && book.pages !== '') {
       const final = await getAllCategories();
-      console.log(book);
       final.data.forEach((element) => {
-        console.log(filter);
         if (element.name === filter) {
           createNewBook(book, element.id).then(() => {
             created(true);
