@@ -1,12 +1,12 @@
 import React from 'react';
-import Dashboard from './Dashboard';
+import Dashboard from '../containers/Dashboard';
 import Footer from './Footer';
 import Navbar from './Navbar';
 
 const App = () => (
 
   <div>
-    <Navbar allbooks="Dashboard" />
+    <Navbar Navcontent="Dashboard" />
     <Dashboard />
     <Footer />
   </div>

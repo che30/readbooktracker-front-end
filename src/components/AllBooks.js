@@ -18,7 +18,7 @@ const AllBooks = () => {
   if (isloading) {
     return (
       <>
-        <Navbar allbooks="ALL BOOKS" />
+        <Navbar Navcontent="ALL BOOKS" />
         <div className="text-center">
           Loading data
         </div>
@@ -29,7 +29,7 @@ const AllBooks = () => {
   if (book === null) {
     return (
       <>
-        <Navbar allbooks="ALL BOOKS" />
+        <Navbar Navcontent="ALL BOOKS" />
         <div>
           <div>
             No books yet
@@ -44,7 +44,7 @@ const AllBooks = () => {
   }
   return (
     <div>
-      <Navbar allbooks="ALL BOOKS" />
+      <Navbar Navcontent="ALL BOOKS" />
       { book.map((elt) => (
         <Link
           to={{

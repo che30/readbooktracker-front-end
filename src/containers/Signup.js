@@ -82,7 +82,7 @@ const signUp = ({
         <ErrMsg />
       </div>
       <div>
-        <form>
+        <form className="w-50 mx-auto mt-3">
           <div>
             <input
               type="input"
@@ -90,7 +90,7 @@ const signUp = ({
               id="user-name"
               value={userCredentials.username}
               onChange={handleChange}
-              className="w-25 input-form text-center"
+              className="w-100 input-form"
             />
           </div>
           <div>
@@ -100,7 +100,7 @@ const signUp = ({
               id="user-email"
               value={userCredentials.email}
               onChange={handleChange}
-              className="w-25 input-form text-center"
+              className="w-100 input-form "
             />
           </div>
           <div>
@@ -110,7 +110,7 @@ const signUp = ({
               id="user-password"
               value={userCredentials.password}
               onChange={handleChange}
-              className="w-25 input-form text-center"
+              className="w-100 input-form "
             />
           </div>
           <input
@@ -119,9 +119,9 @@ const signUp = ({
             id="user-password-confirmation"
             value={userCredentials.passwordConfirmation}
             onChange={handleChange}
-            className="w-25 input-form text-center"
+            className="w-100 input-form "
           />
-          <div>
+          <div className=" mt-1 w-50 ">
             <button type="submit" onClick={handleSubmit}>
               submit
             </button>

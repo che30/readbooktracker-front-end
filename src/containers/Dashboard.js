@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CurrentUserMeasurement from '../apirequests/CurrentUserMeasurement';
 import getAllBooks from '../apirequests/GetAllBooks';
-import Progress from './Progress';
+import Progress from '../components/Progress';
 import '../assets/Dashboard.css';
 import {
   setBooksFromApi, setFinishedStaus, setMeasurementApi, setMeasurementStatus,
@@ -29,7 +29,9 @@ const Dashboard = ({
   useEffect(async () => {
     const data = await getAllBooks();
     const measurement = await CurrentUserMeasurement();
-    if ((data !== undefined) && (Object.keys(data[0]).length === 9)) {
+    if ((data !== undefined)
+     && data.length !== 0
+    && (Object.keys(data[0]).length === 9)) {
       bookfetch(data);
     }
     if (measurement !== undefined) {

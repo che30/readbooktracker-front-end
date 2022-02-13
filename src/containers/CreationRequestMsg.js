@@ -5,15 +5,13 @@ import PropTypes from 'prop-types';
 const CreateRequestMsg = ({ load }) => {
   if (load) {
     return (
-      <div>
+      <div className="text-center">
         creating user
       </div>
     );
   }
   return (
-    <div className="d-none">
-      nothing
-    </div>
+    <div />
   );
 };
 CreateRequestMsg.propTypes = {

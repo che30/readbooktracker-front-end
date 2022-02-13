@@ -9,6 +9,7 @@ import Signup from './containers/Signup';
 import ProtectedRoute from './components/ProtectedRoute';
 import AllBooks from './components/AllBooks';
 import Measure from './containers/Measure';
+import MeasurementProgress from './containers/MeasurementProgress';
 
 const Routes = () => (
 
@@ -22,6 +23,7 @@ const Routes = () => (
       <ProtectedRoute path="/books" component={AllBooks} />
       <ProtectedRoute path="/new-book" component={NewBook} />
       <ProtectedRoute path="/measure" component={Measure} />
+      <ProtectedRoute path="/track-progress" component={MeasurementProgress} />
 
     </Switch>
   </main>

@@ -36,15 +36,30 @@ const Footer = () => (
       </div>
       <div className="d-flex   flex-column justify-content-center align-items-center">
         <div>
-          <i className="fa fa-pie-chart" />
+          <NavLink
+            exact
+            to="/track-progress"
+            className="text-decoration-none text-white
+           main-nav book"
+            activeClassName="main-nav--active"
+          >
+            <i className="fa fa-pie-chart" />
+          </NavLink>
         </div>
         <div>
-          <span className="menu_item_two">
-            Your
-          </span>
-          <span>
-            progress
-          </span>
+          <NavLink
+            exact
+            to="/track-progress"
+            className="text-decoration-none
+           text-white "
+          >
+            <span className="menu_item_one">
+              Your
+            </span>
+            <span>
+              progress
+            </span>
+          </NavLink>
         </div>
       </div>
       <div className="d-flex flex-column align-items-center  ">

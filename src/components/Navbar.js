@@ -1,14 +1,14 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 
-const Navbar = ({ allbooks }) => (
+const Navbar = ({ Navcontent }) => (
   <>
     <nav className="bg_color_Pantone w-100 text-white text-center p-2">
-      {allbooks}
+      {Navcontent}
     </nav>
   </>
 );
 Navbar.propTypes = {
-  allbooks: Proptypes.string.isRequired,
+  Navcontent: Proptypes.string.isRequired,
 };
 export default Navbar;
