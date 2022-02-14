@@ -112,7 +112,15 @@ const Dashboard = ({
               {todayMeasureMents.map((elt) => (
                 <div className="row align-items-center" key={elt.createdAt}>
                   <div className="col-4 col-md-3 col-lg-3">
-                    {elt.bookIsbn}
+                    <div className="dropdown">
+                      <div>{elt.bookIsbn}</div>
+                      <div className="dropdown-content">
+                        <a className="text-decoration-none" href="/books">
+                          <span className="book__name">Name of book: </span>
+                          {elt.name}
+                        </a>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-3">
                     <Progress
@@ -149,7 +157,15 @@ const Dashboard = ({
               {yesterdayMeasurement.map((elt) => (
                 <div className="row align-items-center" key={elt.createdAt}>
                   <div className="col-4 col-md-3 col-lg-3 ">
-                    {elt.bookIsbn}
+                    <div className="dropdown">
+                      <div>{elt.bookIsbn}</div>
+                      <div className="dropdown-content">
+                        <a className="text-decoration-none" href="/books">
+                          <span className="book__name">Name of book: </span>
+                          {elt.name}
+                        </a>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-3">
                     <Progress
@@ -182,10 +198,17 @@ const Dashboard = ({
               if (val.createdAt.slice(0, 10) !== yesterdayDate.slice(0, 10)
             && val.createdAt.slice(0, 10) !== dateOfToday.slice(0, 10)) {
                 return (
-                  <div className="row align-items-center" key={val.id}>
+                  <div className="row align-items-center border-bottom pb-3" key={val.id}>
                     <div className="col-4 col-md-3 col-lg-3 maximum__width">
-                      { val.bookIsbn}
-                      {/* { val.bookname} */}
+                      <div className="dropdown">
+                        <div>{ val.bookIsbn}</div>
+                        <div className="dropdown-content">
+                          <a className="text-decoration-none" href="/books">
+                            <span className="book__name">Name of book: </span>
+                            { val.bookname }
+                          </a>
+                        </div>
+                      </div>
                     </div>
                     <div className="col-3">
                       <div>
