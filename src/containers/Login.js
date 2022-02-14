@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import sendLoginRequest from '../apirequests/sendLoginRequest';
 import {
-  loginSuccessAction, loginUserEmail, loguserPassword, unsucessfulLoginAction, ValidateEr,
+  loginSuccessAction,
+  loginUserEmail,
+  loguserPassword,
+  unsucessfulLoginAction,
 } from '../actions';
-import CreationRequestMsg from './CreationRequestMsg';
-import data from '../helpers/data';
+import '../assets/Login.css';
 
 const Login = (props) => {
   const {
@@ -16,9 +18,9 @@ const Login = (props) => {
     setPassword,
     setEmail,
     LogInSuccess,
+    isLoggedIn,
     unsucessful,
     unsucessfulState,
-    errMsg,
   } = props;
   const handleChange = (e) => {
     if (e.target.id === 'user-email') {
@@ -34,23 +36,20 @@ const Login = (props) => {
         if (res.status && res.status === 200) {
           LogInSuccess(true);
         } else {
-          errMsg(res.data);
           unsucessful(true);
         }
       });
     }
   };
-  if (data() !== null) {
+  console.log(isLoggedIn);
+  if (isLoggedIn) {
     return <Redirect to="/" />;
   }
   return (
-    <div>
-      <div>
-        <CreationRequestMsg />
-      </div>
+    <div className="Login__main__container">
       <div>
         {unsucessfulState ? (
-          <div className="text-center">
+          <div className="text-center alert alert-danger">
             {' '}
             Invalid combination
             of email and password
@@ -58,39 +57,41 @@ const Login = (props) => {
           </div>
         ) : <div> </div>}
       </div>
-      <form className="w-75 mx-auto mt-3">
-        <div>
+      <div className="form__container">
+        <form className=" mx-auto Login__form">
+          <div>
 
-          <input
-            type="email"
-            placeholder="email"
-            id="user-email"
-            value={email}
-            onChange={handleChange}
-            className="w-100 input-form text-center"
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="password"
-            id="user-password"
-            value={password}
-            onChange={handleChange}
-            className="w-100 input-form text-center"
-          />
-        </div>
-        <button type="submit" onClick={handleSubmit}>
-          submit
-        </button>
-      </form>
-      <div>
-        <span> New user?</span>
+            <input
+              type="email"
+              placeholder="email"
+              id="user-email"
+              value={email}
+              onChange={handleChange}
+              className=" input-form"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="password"
+              id="user-password"
+              value={password}
+              onChange={handleChange}
+              className=" text-center input-form"
+            />
+          </div>
+          <button type="submit" className="Login__submit" onClick={handleSubmit}>
+            submit
+          </button>
+        </form>
+      </div>
+      <div className="mx-auto new__user__link">
+        <span className="text-white"> New user?</span>
         <span>
           <NavLink
             exact
             to="/Signup"
-            className="text-decoration-none"
+            className="text-decoration-none text-danger"
           >
             {' '}
             SignUp
@@ -106,7 +107,6 @@ Login.defaultProps = {
   setPassword() {},
   LogInSuccess() {},
   unsucessful() {},
-  errMsg() {},
   email: '',
   password: '',
 };
@@ -116,13 +116,14 @@ Login.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
   LogInSuccess: PropTypes.func,
+  isLoggedIn: PropTypes.bool.isRequired,
   unsucessfulState: PropTypes.bool.isRequired,
   unsucessful: PropTypes.func,
-  errMsg: PropTypes.func,
 };
 const mapStateProps = (state) => ({
   email: state.LoginUser.email,
   password: state.LoginUser.password,
+  isLoggedIn: state.LoginUser.loggedIn,
   unsucessfulState: state.LoginUser.unsucceful,
 });
 const mapDispatchToProps = (dispatch) => ({
@@ -130,6 +131,5 @@ const mapDispatchToProps = (dispatch) => ({
   setEmail: (email) => dispatch(loginUserEmail(email)),
   LogInSuccess: (status) => dispatch(loginSuccessAction(status)),
   unsucessful: (status) => dispatch(unsucessfulLoginAction(status)),
-  errMsg: (msg) => dispatch(ValidateEr(msg)),
 });
 export default connect(mapStateProps, mapDispatchToProps)(Login);
