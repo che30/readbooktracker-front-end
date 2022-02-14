@@ -47,7 +47,7 @@ const Login = (props) => {
   }
   return (
     <div className="Login__main__container">
-      <div>
+      <div className="login__alert__msg">
         {unsucessfulState ? (
           <div className="text-center alert alert-danger">
             {' '}

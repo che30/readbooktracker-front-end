@@ -38,6 +38,9 @@ input[type="text"]{
 .new__user__link {
   width: 30%;
 }
+.login__alert__msg{
+  margin-top: -10px;
+}
 @media( max-width: 567px){
   .Login__form {
     width: 55%;
