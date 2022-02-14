@@ -78,7 +78,7 @@ const signUp = ({
   if (token !== null) {
     decoded = jwtDecode(token);
   }
-  if ((isLoggedIn) && (decoded.exp > Date.now() / 1000)) {
+  if ((isLoggedIn) && (decoded) && (decoded.exp > Date.now() / 1000)) {
     return <Redirect to="/" />;
   }
   return (

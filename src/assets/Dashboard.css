@@ -1,9 +1,9 @@
 .grey__background {
-  background-color: #C0C0C0;
+  background-color: #e7e0e0;
   width: 88.5%;
   margin-left: auto;
   margin-right: auto;
-  padding: 20px 0 20px 0;
+  padding: 20px 0 35px 0;
 }
 .margin__top{
   margin-top: 100px;
@@ -41,8 +41,16 @@
   max-width: 50px;
 }
 .welcome__text {
-  background-color: #9400D3;
+   background-color: #f0ecf1;
   font-size: 1.6rem;
-  color: white;
+  color: #9400D3;
   width: 88.5%;
+}
+.border__bottom__last__week{
+  border-bottom: 1px solid #9400D3;
+}
+@media(max-width: 567px) {
+  .welcome__text {
+    font-size: 1rem;
+  }
 }

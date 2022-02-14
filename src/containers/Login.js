@@ -7,6 +7,7 @@ import {
   loginSuccessAction, loginUserEmail, loguserPassword, unsucessfulLoginAction, ValidateEr,
 } from '../actions';
 import CreationRequestMsg from './CreationRequestMsg';
+import data from '../helpers/data';
 
 const Login = (props) => {
   const {
@@ -15,7 +16,6 @@ const Login = (props) => {
     setPassword,
     setEmail,
     LogInSuccess,
-    isLoggedIn,
     unsucessful,
     unsucessfulState,
     errMsg,
@@ -40,7 +40,7 @@ const Login = (props) => {
       });
     }
   };
-  if (isLoggedIn) {
+  if (data() !== null) {
     return <Redirect to="/" />;
   }
   return (
@@ -116,7 +116,6 @@ Login.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
   LogInSuccess: PropTypes.func,
-  isLoggedIn: PropTypes.bool.isRequired,
   unsucessfulState: PropTypes.bool.isRequired,
   unsucessful: PropTypes.func,
   errMsg: PropTypes.func,
@@ -124,7 +123,6 @@ Login.propTypes = {
 const mapStateProps = (state) => ({
   email: state.LoginUser.email,
   password: state.LoginUser.password,
-  isLoggedIn: state.LoginUser.loggedIn,
   unsucessfulState: state.LoginUser.unsucceful,
 });
 const mapDispatchToProps = (dispatch) => ({

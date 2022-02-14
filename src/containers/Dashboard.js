@@ -203,7 +203,7 @@ const Dashboard = ({
               if (val.createdAt.slice(0, 10) !== yesterdayDate.slice(0, 10)
             && val.createdAt.slice(0, 10) !== dateOfToday.slice(0, 10)) {
                 return (
-                  <div className="row align-items-center border-bottom pb-3" key={val.id}>
+                  <div className="row align-items-center border__bottom__last__week pb-3 pt-2" key={val.id}>
                     <div className="col-4 col-md-3 col-lg-3 maximum__width">
                       <div className="dropdown">
                         <div>{ val.bookIsbn}</div>

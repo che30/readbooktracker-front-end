@@ -2,12 +2,19 @@
   padding-right: 2%;
 }
 .Navcontent {
-  padding-left: 40%;
+  padding-left: 44%;
 }
 nav {
   font-size: 1.8rem;
   justify-content: space-between;
   align-items: center;
+  padding: 5px 0 5px 0;
+}
+.sign__out__Btn{
+  color: white;
+  opacity: 1;
+  background-color: #3498db;
+  border: none;
 }
 @media(max-width: 567px) {
   .Navcontent {

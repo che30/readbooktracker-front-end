@@ -1,6 +1,4 @@
-const ResetStore = (content) => {
-  if (Object.keys(content).length !== 8) {
-    localStorage.setItem('data', null);
-  }
+const ResetStore = () => {
+  localStorage.setItem('auth_token', null);
 };
 export default ResetStore;
