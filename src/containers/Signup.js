@@ -3,7 +3,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import {
   accountBeignCreated,
   loginSuccessAction,
@@ -17,6 +18,7 @@ import creatUser from '../apirequests/CreateUser';
 import sendLoginRequest from '../apirequests/sendLoginRequest';
 import CreationRequestMsg from './CreationRequestMsg';
 import ErrMsg from './ErrMsg';
+import data from '../helpers/data';
 
 const signUp = ({
   userCredentials,
@@ -29,6 +31,7 @@ const signUp = ({
   updateStatus,
   isLoggedIn,
 }) => {
+  const history = useHistory();
   const handleChange = (e) => {
     switch (e.target.id) {
       case 'user-name':
@@ -70,7 +73,12 @@ const signUp = ({
       updateStatus(true);
     }
   });
-  if (isLoggedIn) {
+  const token = data();
+  let decoded;
+  if (token !== null) {
+    decoded = jwtDecode(token);
+  }
+  if ((isLoggedIn) && (decoded.exp > Date.now() / 1000)) {
     return <Redirect to="/" />;
   }
   return (
@@ -128,7 +136,9 @@ const signUp = ({
           </div>
         </form>
       </div>
-
+      <div className="mx-auto mt-5 w-50 text-center">
+        <button type="button" onClick={history.goBack}>Back</button>
+      </div>
     </div>
   );
 };

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import sendLoginRequest from '../apirequests/sendLoginRequest';
 import {
-  loginSuccessAction, loginUserEmail, loguserPassword, unsucessfulLoginAction,
+  loginSuccessAction, loginUserEmail, loguserPassword, unsucessfulLoginAction, ValidateEr,
 } from '../actions';
+import CreationRequestMsg from './CreationRequestMsg';
 
 const Login = (props) => {
   const {
@@ -17,6 +18,7 @@ const Login = (props) => {
     isLoggedIn,
     unsucessful,
     unsucessfulState,
+    errMsg,
   } = props;
   const handleChange = (e) => {
     if (e.target.id === 'user-email') {
@@ -32,6 +34,7 @@ const Login = (props) => {
         if (res.status && res.status === 200) {
           LogInSuccess(true);
         } else {
+          errMsg(res.data);
           unsucessful(true);
         }
       });
@@ -42,6 +45,9 @@ const Login = (props) => {
   }
   return (
     <div>
+      <div>
+        <CreationRequestMsg />
+      </div>
       <div>
         {unsucessfulState ? (
           <div className="text-center">
@@ -78,6 +84,20 @@ const Login = (props) => {
           submit
         </button>
       </form>
+      <div>
+        <span> New user?</span>
+        <span>
+          <NavLink
+            exact
+            to="/Signup"
+            className="text-decoration-none"
+          >
+            {' '}
+            SignUp
+
+          </NavLink>
+        </span>
+      </div>
     </div>
   );
 };
@@ -86,6 +106,7 @@ Login.defaultProps = {
   setPassword() {},
   LogInSuccess() {},
   unsucessful() {},
+  errMsg() {},
   email: '',
   password: '',
 };
@@ -98,6 +119,7 @@ Login.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   unsucessfulState: PropTypes.bool.isRequired,
   unsucessful: PropTypes.func,
+  errMsg: PropTypes.func,
 };
 const mapStateProps = (state) => ({
   email: state.LoginUser.email,
@@ -110,5 +132,6 @@ const mapDispatchToProps = (dispatch) => ({
   setEmail: (email) => dispatch(loginUserEmail(email)),
   LogInSuccess: (status) => dispatch(loginSuccessAction(status)),
   unsucessful: (status) => dispatch(unsucessfulLoginAction(status)),
+  errMsg: (msg) => dispatch(ValidateEr(msg)),
 });
 export default connect(mapStateProps, mapDispatchToProps)(Login);

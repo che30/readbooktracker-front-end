@@ -1,0 +1,16 @@
+.Logout__logo{
+  padding-right: 2%;
+}
+.Navcontent {
+  padding-left: 40%;
+}
+nav {
+  font-size: 1.8rem;
+  justify-content: space-between;
+  align-items: center;
+}
+@media(max-width: 567px) {
+  .Navcontent {
+    padding-left: 35%;
+  }
+}

@@ -15,6 +15,7 @@ import createNewBook from '../apirequests/createBook';
 import Footer from '../components/Footer';
 import '../assets/Newbook.css';
 import getAllCategories from '../apirequests/GetAllCategories';
+import Navbar from '../components/Navbar';
 
 const NewBook = ({
   saveAuthor,
@@ -77,9 +78,7 @@ const NewBook = ({
   }
   return (
     <div>
-      <nav className="bg_color_Pantone w-100  w-100 text-white text-center p-2">
-        New Book
-      </nav>
+      <Navbar Navcontent="New Book" />
       <div className="text-center">
         {alertMessage}
       </div>

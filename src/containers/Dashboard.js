@@ -99,6 +99,11 @@ const Dashboard = ({
   if (finished) {
     return (
       <div>
+        <div className="welcome__text text-center mx-auto py-2">
+          Welcome, Track your readings. Don
+          <span>&apos;</span>
+          t Know? hover over me
+        </div>
         <div className="grey__background">
           <div className="">
             <div className="container">
