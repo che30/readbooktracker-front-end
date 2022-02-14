@@ -19,6 +19,7 @@ import sendLoginRequest from '../apirequests/sendLoginRequest';
 import CreationRequestMsg from './CreationRequestMsg';
 import ErrMsg from './ErrMsg';
 import data from '../helpers/data';
+import '../assets/signup.css';
 
 const signUp = ({
   userCredentials,
@@ -82,15 +83,15 @@ const signUp = ({
     return <Redirect to="/" />;
   }
   return (
-    <div>
-      <div>
+    <div className="Login__main__container ">
+      <div className="login__alert__msg">
         <CreationRequestMsg />
       </div>
       <div>
         <ErrMsg />
       </div>
-      <div>
-        <form className="w-50 mx-auto mt-3">
+      <div className="form__container sign__up__form__container">
+        <form className="Sign__up__form mx-auto ">
           <div>
             <input
               type="input"
@@ -98,7 +99,7 @@ const signUp = ({
               id="user-name"
               value={userCredentials.username}
               onChange={handleChange}
-              className="w-100 input-form"
+              className=" input-form"
             />
           </div>
           <div>
@@ -108,7 +109,7 @@ const signUp = ({
               id="user-email"
               value={userCredentials.email}
               onChange={handleChange}
-              className="w-100 input-form "
+              className=" input-form "
             />
           </div>
           <div>
@@ -118,26 +119,26 @@ const signUp = ({
               id="user-password"
               value={userCredentials.password}
               onChange={handleChange}
-              className="w-100 input-form "
+              className="input-form "
             />
           </div>
-          <input
-            type="password"
-            placeholder="password confirmation"
-            id="user-password-confirmation"
-            value={userCredentials.passwordConfirmation}
-            onChange={handleChange}
-            className="w-100 input-form "
-          />
-          <div className=" mt-1 w-50 ">
-            <button type="submit" onClick={handleSubmit}>
-              submit
-            </button>
+          <div>
+            <input
+              type="password"
+              placeholder="password confirmation"
+              id="user-password-confirmation"
+              value={userCredentials.passwordConfirmation}
+              onChange={handleChange}
+              className="input-form "
+            />
           </div>
+          <button type="submit" className="Login__submit" onClick={handleSubmit}>
+            submit
+          </button>
         </form>
       </div>
       <div className="mx-auto mt-5 w-50 text-center">
-        <button type="button" onClick={history.goBack}>Back</button>
+        <button type="button" className="back__btn" onClick={history.goBack}>Back</button>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ padding: 20px 0 20px 0;
 border-radius: 5px;
 }
 .input-form {
-  width: 110%;
+  width: 100%;
 }
 .Login__submit{
   width: 20%;
@@ -55,5 +55,20 @@ input[type="text"]{
   .input-form {
     width: 90%;
     margin: 0 0 0 10px;
+  }
+}
+@media(max-width: 767px) and (min-width: 567px){
+  .input-form {
+    width: 89%;
+    margin: 0 0 0 10px;
+  }
+}
+@media(max-width: 1024px) and (min-width: 768px){
+  .input-form {
+    width: 93%;
+    margin: 0 0 0 10px;
+  }
+  .Login__submit{
+    width: 60%;
   }
 }

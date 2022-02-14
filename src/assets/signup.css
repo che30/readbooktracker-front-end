@@ -1,0 +1,27 @@
+.sign__up__form__container{
+  margin-top: 120px;
+}
+.Sign__up__form{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+  height: 50vh;
+  padding: 20px 0 20px 0;
+  border-radius: 5px;
+}
+.back__btn{
+  border: none;
+  opacity: 1;
+  border-radius: 5px;
+  padding: 5px 5px 5px 5px;
+}
+@media( max-width: 567px){
+  .Sign__up__form {
+    width: 80%;
+    
+    }
+}
