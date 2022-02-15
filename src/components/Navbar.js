@@ -9,7 +9,7 @@ const Navbar = ({ Navcontent }) => {
   };
   return (
     <>
-      <nav className="bg_color_Pantone w-100 text-white d-flex">
+      <nav className="bg_color_Pantone w-100 text-white d-flex font-helvetica-bold">
         <div className="Navcontent">{Navcontent}</div>
         <div className="Logout__logo">
           <button

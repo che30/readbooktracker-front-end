@@ -99,7 +99,7 @@ const Dashboard = ({
   if (finished) {
     return (
       <div>
-        <div className="welcome__text text-center mx-auto py-2">
+        <div className="welcome__text text-center mx-auto py-2 font-helvetica-light">
           Welcome, Track your readings. Don
           <span>&apos;</span>
           t Know? hover over me
@@ -137,7 +137,7 @@ const Dashboard = ({
                       unit="%"
                     />
                   </div>
-                  <div className="col-3">
+                  <div className="col-3 font-helvetica-light">
                     {elt.createdAt.slice(0, 10)}
                   </div>
                   <div className="col-2">
@@ -154,7 +154,7 @@ const Dashboard = ({
             <div className="container">
               <div className="row bg-white mb-2 border__bottom__last__week">
                 <div className="col-12">
-                  <div>
+                  <div className="font-helvetica-light">
                     {yesterdayFunc(yesterdayMeasurement)}
                   </div>
                 </div>
@@ -172,7 +172,7 @@ const Dashboard = ({
                       </div>
                     </div>
                   </div>
-                  <div className="col-3">
+                  <div className="col-3 font-helvetica-light">
                     <Progress
                       size={55}
                       progress={Math.round((elt.pagesRead / elt.bookNumberOfPages) * 100)}
@@ -182,7 +182,7 @@ const Dashboard = ({
                       unit="%"
                     />
                   </div>
-                  <div className="col-3">
+                  <div className="col-3 font-helvetica-light">
                     {elt.createdAt.slice(0, 10)}
                   </div>
                   <div className="col-2">
@@ -196,7 +196,7 @@ const Dashboard = ({
           <div className="container">
             <div className="row bg-white border__bottom__last__week">
               <div className="col-12">
-                <div> last week</div>
+                <div className="font-helvetica-light"> last week</div>
               </div>
             </div>
             { testvar.map((val) => {
@@ -215,7 +215,7 @@ const Dashboard = ({
                         </div>
                       </div>
                     </div>
-                    <div className="col-3">
+                    <div className="col-3 font-helvetica-light">
                       <div>
                         <Progress
                           size={55}
@@ -227,7 +227,7 @@ const Dashboard = ({
                         />
                       </div>
                     </div>
-                    <div className="col-3">
+                    <div className="col-3 font-helvetica-light">
                       {val.createdAt.slice(0, 10)}
                     </div>
                     <div className="col-2">

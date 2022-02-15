@@ -132,13 +132,13 @@ const signUp = ({
               className="text-center input-form "
             />
           </div>
-          <button type="submit" className="Login__submit" onClick={handleSubmit}>
+          <button type="submit" className="Login__submit font-helvetica-bold" onClick={handleSubmit}>
             submit
           </button>
         </form>
       </div>
       <div className="mx-auto mt-5 w-50 text-center">
-        <button type="button" className="back__btn" onClick={history.goBack}>Back</button>
+        <button type="button" className="back__btn font-helvetica-bold" onClick={history.goBack}>Back</button>
       </div>
     </div>
   );

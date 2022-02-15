@@ -23,7 +23,7 @@ const BookFilter = ({ changeFilter }) => {
         </div>
         <div>
           <label>
-            <select className="catFilter   py-2 " onChange={(e) => { changeFilter(e.target.value); }}>
+            <select className="catFilter font-helvetica-light   py-2 " onChange={(e) => { changeFilter(e.target.value); }}>
               {categories.map((cat) => (
                 <option
                   key={cat.id}

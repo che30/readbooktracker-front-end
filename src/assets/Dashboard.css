@@ -1,3 +1,22 @@
+@font-face{
+  font-family: "helvetica-bold";
+  src: url(/src/assets/fonts/Helvetica-Bold-Font.ttf);
+  font-weight: 500;
+}
+@font-face{
+  font-family: "helvetica-light";
+  src: url(/src/assets/fonts/HelveticaLt.ttf);
+}
+.font-helvetica-bold{
+ font-family: "helvetica-bold", helvetica, arial, sans-serif;
+}
+.font-helvetica-light{
+  font-family: "helvetica-light", helvetica, arial, sans-serif;
+  color: gray;
+ }
+ body {
+  font-family: "helvetica-light", "helvetica-bold", helvetica, arial, sans-serif;
+}
 .grey__background {
   background-color: #e7e0e0;
   width: 88.5%;

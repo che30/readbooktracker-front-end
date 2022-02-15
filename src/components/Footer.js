@@ -4,7 +4,7 @@ import '../assets/Footer.css';
 
 const Footer = () => (
   <>
-    <div className="menu d-flex flex-row justify-content-around ">
+    <div className="menu d-flex flex-row justify-content-around font-helvetica-bold ">
       <div className="d-flex  flex-column justify-content-center align-items-center">
         <div>
           <NavLink

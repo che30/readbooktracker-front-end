@@ -50,7 +50,7 @@ const Measure = (props) => {
         <ErrMsg />
       </div>
       <div className="new__measure__padding__top">
-        <form className="measure__form mx-auto mt-3">
+        <form className="measure__form mx-auto mt-3 font-helvetica-light">
           <div>
             <input
               type="text"
@@ -68,18 +68,18 @@ const Measure = (props) => {
               onChange={handleChange}
               placeholder="pages read"
               id="date"
-              className="text-center"
+              className="text-center font-helvetica-light"
             />
           </div>
           <div className="mx-auto text-center">
-            <button type="submit" className="new__book__submit" onClick={handleSubmit}>
+            <button type="submit" className="new__book__submit font-helvetica-bold" onClick={handleSubmit}>
               submit
             </button>
           </div>
         </form>
       </div>
       <div className="mx-auto mt-5 w-50 text-center">
-        <button type="button" className="new__book__back" onClick={history.goBack}>Back</button>
+        <button type="button" className="new__book__back font-helvetica-bold" onClick={history.goBack}>Back</button>
       </div>
       <Footer />
     </div>

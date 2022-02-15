@@ -87,7 +87,7 @@ const NewBook = ({
           <BookFilter changeFilter={changeFilter} />
         </div>
         <div>
-          <form className="mx-auto new__book__form">
+          <form className="mx-auto new__book__form font-helvetica-light">
             <div>
               <input
                 className=""
@@ -131,7 +131,7 @@ const NewBook = ({
               />
             </div>
             <div className="text-center mx-auto">
-              <button type="submit" className="new__book__submit" onClick={handleSubmit}>
+              <button type="submit" className="new__book__submit font-helvetica-bold" onClick={handleSubmit}>
                 submit
               </button>
             </div>
@@ -139,7 +139,7 @@ const NewBook = ({
 
         </div>
         <div className="mx-auto mt-5 w-50 text-center">
-          <button type="button" className="new__book__back" onClick={history.goBack}>Back</button>
+          <button type="button" className="new__book__back font-helvetica-bold" onClick={history.goBack}>Back</button>
         </div>
       </div>
       <Footer />

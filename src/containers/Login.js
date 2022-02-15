@@ -80,7 +80,7 @@ const Login = (props) => {
               className=" text-center input-form"
             />
           </div>
-          <button type="submit" className="Login__submit" onClick={handleSubmit}>
+          <button type="submit" className="Login__submit font-helvetica-bold" onClick={handleSubmit}>
             submit
           </button>
         </form>
@@ -91,7 +91,7 @@ const Login = (props) => {
           <NavLink
             exact
             to="/Signup"
-            className="text-decoration-none text-danger"
+            className="text-decoration-none text-danger font-helvetica-bold"
           >
             {' '}
             SignUp
