@@ -1,7 +1,8 @@
 import jwtDecode from 'jwt-decode';
+import data from '../helpers/data';
 
 const newMeasurementApi = async (pgRead, bookId, date) => {
-  const token = JSON.parse(localStorage.getItem('auth_token'));
+  const token = data();
   const decoded = jwtDecode(token);
   try {
     const rawResponse = await fetch('http://127.0.0.1:3001/measurments', {

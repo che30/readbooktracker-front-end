@@ -71,4 +71,10 @@ input[type="text"]{
   .Login__submit{
     width: 60%;
   }
+  .form__container {
+    margin-top: 400px;
+  }
+  .Login__form {
+    height: 15vh;
+    }
 }

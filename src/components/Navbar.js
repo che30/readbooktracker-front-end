@@ -18,7 +18,7 @@ const Navbar = ({ Navcontent }) => {
             type="button"
             aria-label="Logout"
           >
-            <i className="fa fa-sign-out" />
+            <i className="fa fa-power-off" />
           </button>
         </div>
       </nav>

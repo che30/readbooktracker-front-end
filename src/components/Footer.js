@@ -51,7 +51,7 @@ const Footer = () => (
             exact
             to="/track-progress"
             className="text-decoration-none
-           text-white "
+           text-white   progress__padding"
           >
             <span className="menu_item_one">
               Your
@@ -94,11 +94,12 @@ const Footer = () => (
         <NavLink
           exact
           to="/"
-          className="text-decoration-none text-white"
+          className="text-decoration-none text-white board__top"
+          activeClassName="main-nav--active"
         >
-          <div className="menu_item_three">
-            Dashboard
-          </div>
+          <span className="board">
+            Board
+          </span>
         </NavLink>
       </div>
     </div>

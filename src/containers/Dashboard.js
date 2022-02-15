@@ -152,7 +152,7 @@ const Dashboard = ({
           <div>
 
             <div className="container">
-              <div className="row bg-white mb-2">
+              <div className="row bg-white mb-2 border__bottom__last__week">
                 <div className="col-12">
                   <div>
                     {yesterdayFunc(yesterdayMeasurement)}
@@ -160,7 +160,7 @@ const Dashboard = ({
                 </div>
               </div>
               {yesterdayMeasurement.map((elt) => (
-                <div className="row align-items-center" key={elt.createdAt}>
+                <div className="row align-items-center pt-1 pb-4 " key={elt.createdAt}>
                   <div className="col-4 col-md-3 col-lg-3 ">
                     <div className="dropdown">
                       <div>{elt.bookIsbn}</div>
@@ -178,7 +178,7 @@ const Dashboard = ({
                       progress={Math.round((elt.pagesRead / elt.bookNumberOfPages) * 100)}
                       strokeWidth={10}
                       circleOneStroke="#A0A0A0"
-                      circleTwoStroke="##9400D3"
+                      circleTwoStroke="#9400D3"
                       unit="%"
                     />
                   </div>
@@ -194,7 +194,7 @@ const Dashboard = ({
             </div>
           </div>
           <div className="container">
-            <div className="row bg-white">
+            <div className="row bg-white border__bottom__last__week">
               <div className="col-12">
                 <div> last week</div>
               </div>

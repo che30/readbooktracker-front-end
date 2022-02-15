@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect, useHistory } from 'react-router-dom';
@@ -9,6 +9,7 @@ import {
   NewBookIsbn,
   NewBookName,
   NewBookPages,
+  ValidateEr,
 } from '../actions';
 import BookFilter from '../components/bookFilter';
 import createNewBook from '../apirequests/createBook';
@@ -16,6 +17,7 @@ import Footer from '../components/Footer';
 import '../assets/Newbook.css';
 import getAllCategories from '../apirequests/GetAllCategories';
 import Navbar from '../components/Navbar';
+import ErrMsg from './ErrMsg';
 
 const NewBook = ({
   saveAuthor,
@@ -26,9 +28,9 @@ const NewBook = ({
   changeFilter,
   filter,
   created,
+  errMsg,
 }) => {
   const history = useHistory();
-  const [alertMessage, setAlertMessage] = useState();
   const handleChange = (e) => {
     switch (e.target.id) {
       case 'name':
@@ -48,20 +50,20 @@ const NewBook = ({
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (book.author !== '' && book.isbn !== '' && book.pages !== '') {
-      const final = await getAllCategories();
-      final.data.forEach((element) => {
-        if (element.name === filter) {
-          createNewBook(book, element.id).then(() => {
+    const final = await getAllCategories();
+    final.data.forEach((element) => {
+      if (element.name === filter) {
+        createNewBook(book, element.id).then((result) => {
+          console.log(result);
+          if (result.status === 200) {
             created(true);
-          });
-        }
-      });
-    } else {
-      setAlertMessage('ALL FIELDS MUST BE FILLED ');
-    }
+          } else if (result.message) {
+            errMsg(result.message.slice(19, result.message.length));
+          }
+        });
+      }
+    });
   };
-  // console.log(book);
   if (book.created) {
     return (
       <div>
@@ -72,73 +74,73 @@ const NewBook = ({
           {' '}
           <button type="button" onClick={history.goBack}>Back</button>
         </div>
-        <Redirect to="/Book" />
+        <Redirect to="/books" />
       </div>
     );
   }
   return (
-    <div>
+    <div className="main__new__book__container">
       <Navbar Navcontent="New Book" />
-      <div className="text-center">
-        {alertMessage}
-      </div>
-      <div className="text-center w-100">
-        <BookFilter changeFilter={changeFilter} />
-      </div>
-      <div>
-        <form className="mx-auto w-75">
-          <div>
-            <input
-              className="w-100"
-              type="text"
-              id="name"
-              placeholder="name"
-              value={book.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <input
-              className="w-100"
-              type="text"
-              id="author"
-              placeholder="author"
-              value={book.author}
-              onChange={handleChange}
-            />
-          </div>
+      <ErrMsg />
+      <div className="new__book__padding__top">
+        <div className="text-center w-100 mt-3">
+          <BookFilter changeFilter={changeFilter} />
+        </div>
+        <div>
+          <form className="mx-auto new__book__form">
+            <div>
+              <input
+                className=""
+                type="text"
+                id="name"
+                placeholder="name"
+                value={book.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <input
+                className=""
+                type="text"
+                id="author"
+                placeholder="author"
+                value={book.author}
+                onChange={handleChange}
+              />
+            </div>
 
-          <div>
-            <input
-              className="w-100"
-              type="text"
-              id="isbn"
-              placeholder="ISBN"
-              value={book.isbn}
-              onChange={handleChange}
-            />
-          </div>
+            <div>
+              <input
+                className=""
+                type="text"
+                id="isbn"
+                placeholder="ISBN"
+                value={book.isbn}
+                onChange={handleChange}
+              />
+            </div>
 
-          <div>
-            <input
-              className="w-100"
-              type="text"
-              id="pages"
-              placeholder="number of pages"
-              value={book.numberOfPages}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="text-center mx-auto">
-            <button type="submit" onClick={handleSubmit}>
-              submit
-            </button>
-          </div>
-        </form>
+            <div>
+              <input
+                className=""
+                type="text"
+                id="pages"
+                placeholder="number of pages"
+                value={book.numberOfPages}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="text-center mx-auto">
+              <button type="submit" className="new__book__submit" onClick={handleSubmit}>
+                submit
+              </button>
+            </div>
+          </form>
 
-      </div>
-      <div className="mx-auto mt-5 w-50 text-center">
-        <button type="button" onClick={history.goBack}>Back</button>
+        </div>
+        <div className="mx-auto mt-5 w-50 text-center">
+          <button type="button" className="new__book__back" onClick={history.goBack}>Back</button>
+        </div>
       </div>
       <Footer />
     </div>
@@ -151,6 +153,7 @@ NewBook.defaultProps = {
   saveNbPg() {},
   changeFilter() {},
   created() {},
+  errMsg() {},
   book: {},
   filter: '',
   categories: {},
@@ -164,6 +167,7 @@ NewBook.propTypes = {
   changeFilter: PropTypes.func,
   created: PropTypes.func,
   filter: PropTypes.string,
+  errMsg: PropTypes.func,
   book: PropTypes.shape({
     name: PropTypes.string,
     author: PropTypes.string,
@@ -189,5 +193,6 @@ const mapDispatchToProps = (dispatch) => ({
   saveNbPg: (pgs) => dispatch(NewBookPages(pgs)),
   changeFilter: (elt) => dispatch(FilterCategories(elt)),
   created: (status) => dispatch(bookCreated(status)),
+  errMsg: (msg) => dispatch(ValidateEr(msg)),
 });
 export default connect(mapStateProps, mapDispatchToProps)(NewBook);

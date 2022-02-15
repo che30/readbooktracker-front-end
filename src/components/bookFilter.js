@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import getAllCategories from '../apirequests/GetAllCategories';
+import '../assets/bookfilter.css';
 
 const BookFilter = ({ changeFilter }) => {
   const [categories, setCategories] = useState();
@@ -20,19 +21,22 @@ const BookFilter = ({ changeFilter }) => {
         <div className="text-center">
           {Loading ? <div> Fetching categories </div> : <div />}
         </div>
-        <label>
-          <select className="catFilter py-2 " onChange={(e) => { changeFilter(e.target.value); }}>
-            {categories.map((cat) => (
-              <option
-                key={cat.id}
-                value={cat.name}
-                id={cat.id}
-              >
-                {cat.name}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div>
+          <label>
+            <select className="catFilter   py-2 " onChange={(e) => { changeFilter(e.target.value); }}>
+              {categories.map((cat) => (
+                <option
+                  key={cat.id}
+                  value={cat.name}
+                  id={cat.id}
+                  className="catFilter__dropdown p-5"
+                >
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
       </div>
 
     );

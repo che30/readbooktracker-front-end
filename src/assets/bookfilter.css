@@ -1,0 +1,10 @@
+
+
+.catFilter {
+ border: none;
+ background-color:  rgb(231, 226, 226);;
+ padding-right: 30px;
+}
+.catFilter__dropdown{
+  width: 500px;
+}

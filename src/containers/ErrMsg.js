@@ -9,10 +9,10 @@ const ErrMsg = ({ errors }) => {
   }
   if (errors !== '') {
     return (
-      <div>
+      <div className="mx-auto w-75">
         {errMessages.map((msg) => (
-          <div key={msg} className="alert alert-danger text-success text-center">
-            <div>
+          <div key={msg} className="text-center d-inline-flex">
+            <div className="alert alert-danger text-success ">
               {msg}
             </div>
           </div>

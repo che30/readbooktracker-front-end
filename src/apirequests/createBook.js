@@ -1,8 +1,9 @@
 // import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import data from '../helpers/data';
 
 const createNewBook = async (book, id) => {
-  const token = JSON.parse(localStorage.getItem('auth_token'));
+  const token = data();
   const decoded = jwtDecode(token);
   try {
     const rawResponse = await fetch(`http://127.0.0.1:3001/users/${decoded.user_id}/books`, {
@@ -22,6 +23,7 @@ const createNewBook = async (book, id) => {
       }),
     });
     const content = await rawResponse.json();
+    console.log(content);
     return content;
   } catch (error) {
     return error;

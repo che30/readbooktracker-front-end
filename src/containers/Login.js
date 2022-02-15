@@ -67,7 +67,7 @@ const Login = (props) => {
               id="user-email"
               value={email}
               onChange={handleChange}
-              className=" input-form"
+              className="text-center input-form"
             />
           </div>
           <div>

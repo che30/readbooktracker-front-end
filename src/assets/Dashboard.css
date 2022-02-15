@@ -47,7 +47,8 @@
   width: 88.5%;
 }
 .border__bottom__last__week{
-  border-bottom: 1px solid #9400D3;
+  border-bottom: 1px solid rgb(179, 177, 177);
+  border-top: 1px solid rgb(179, 177, 177);
 }
 @media(max-width: 567px) {
   .welcome__text {

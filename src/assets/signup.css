@@ -18,10 +18,38 @@
   opacity: 1;
   border-radius: 5px;
   padding: 5px 5px 5px 5px;
+  width: 20%;
 }
 @media( max-width: 567px){
   .Sign__up__form {
     width: 80%;
     
     }
+    .back__btn{
+      width: 35%;
+    }
+}
+@media(max-width: 767px) and (min-width: 567px){
+  .Sign__up__form{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+    height: 50vh;
+    padding: 20px 0 20px 0;
+    border-radius: 5px;
+  }
+
+}
+@media(max-width: 1024px) and (min-width: 768px){
+  .Sign__up__form{
+    height: 30vh;
+
+  }
+  .sign__up__form__container{
+    margin-top: 300px;
+  }
 }

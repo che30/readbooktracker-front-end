@@ -1,10 +1,11 @@
 import axios from 'axios';
+import data from '../helpers/data';
 
 const getAllCategories = async () => {
-  const data = JSON.parse(localStorage.getItem('auth_token'));
+  const token = data();
   try {
     const result = await axios.get('http://127.0.0.1:3001/cats',
-      { headers: { Authorization: `Bearer ${data}` } });
+      { headers: { Authorization: `Bearer ${token}` } });
     return result;
   } catch (error) {
     return error;
