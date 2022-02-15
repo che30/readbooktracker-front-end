@@ -122,7 +122,7 @@ const Dashboard = ({
                       <div className="dropdown-content">
                         <a className="text-decoration-none" href="/books">
                           <span className="book__name">Name of book: </span>
-                          {elt.name}
+                          {elt.bookname}
                         </a>
                       </div>
                     </div>
@@ -167,7 +167,7 @@ const Dashboard = ({
                       <div className="dropdown-content">
                         <a className="text-decoration-none" href="/books">
                           <span className="book__name">Name of book: </span>
-                          {elt.name}
+                          {elt.bookname}
                         </a>
                       </div>
                     </div>
