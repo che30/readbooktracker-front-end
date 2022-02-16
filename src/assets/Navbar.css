@@ -18,6 +18,6 @@ nav {
 }
 @media(max-width: 567px) {
   .Navcontent {
-    padding-left: 35%;
+    padding-left: 25%;
   }
 }

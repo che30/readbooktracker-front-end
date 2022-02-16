@@ -1,0 +1,36 @@
+.even__color{
+background-color: black;
+}
+.card {
+  width: 300px;
+  height: 150px;
+}
+.green__color{
+  color: rgb(15, 231, 15);
+}
+@media(max-width: 567px) {
+  .card {
+    width: 400px;
+    margin-bottom: 10px;
+  }
+  .book__row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+}
+@media(max-width: 767px) and (min-width: 567px){
+  .card {
+    width: 400px;
+    margin-bottom: 10px;
+  }
+  .book__row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media(max-width: 1024px) and (min-width: 768px){
+
+}

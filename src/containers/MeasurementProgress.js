@@ -53,21 +53,21 @@ const MeasurementProgress = ({
                   >
                     <div>
                       <div className="dropdown">
-                        <div>{measurment.pages_read}</div>
+                        <div className="font-helvetica-light">{measurment.pages_read}</div>
                         <div className="dropdown-content">
                           <a className="text-decoration-none" href="/books">
-                            <span className="book__name">Latest Page Read: </span>
+                            <span className="book__name ">Latest Page Read: </span>
                             {measurment.pages_read}
                           </a>
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div className="font-helvetica-bold">
                       {measurment.created_at.slice(0, 10)}
                     </div>
                     <div>
                       <div className="dropdown">
-                        <div>{books[i].isbn}</div>
+                        <div className="font-helvetica-light">{books[i].isbn}</div>
                         <div className="dropdown-content">
                           <a className="text-decoration-none" href="/books">
                             <span className="book__name">Name of book: </span>

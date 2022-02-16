@@ -53,9 +53,6 @@ const Footer = () => (
             className="text-decoration-none
            text-white   progress__padding"
           >
-            <span className="menu_item_one">
-              Your
-            </span>
             <span>
               progress
             </span>
@@ -97,7 +94,7 @@ const Footer = () => (
           className="text-decoration-none text-white board__top"
           activeClassName="main-nav--active"
         >
-          <span className="board">
+          <span>
             Board
           </span>
         </NavLink>
