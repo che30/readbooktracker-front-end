@@ -30,7 +30,7 @@ const Measure = (props) => {
       if (Object.keys(data).length === 8) {
         setStatus(true);
       } else {
-        errMsg(data.message);
+        errMsg([data.message]);
       }
     });
   };
@@ -53,7 +53,7 @@ const Measure = (props) => {
         <form className="measure__form mx-auto mt-3 font-helvetica-light">
           <div>
             <input
-              type="text"
+              type="number"
               value={pgRead}
               onChange={handleChange}
               placeholder="pages read"

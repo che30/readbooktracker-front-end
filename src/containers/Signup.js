@@ -57,16 +57,14 @@ const signUp = ({
         sendLoginRequest(userCredentials.email,
           userCredentials.password).then(() => {
           updateStatus(true);
-          // creatMsg(false);
         });
       }
       if (result.status === 200) {
-        errMsg(result.data);
+        errMsg([result.data]);
       }
     });
 
     e.preventDefault();
-    // typedMovie('');
   };
   useEffect(() => {
     const cred = JSON.parse(localStorage.getItem('auth_token'));

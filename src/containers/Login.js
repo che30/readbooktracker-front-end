@@ -39,9 +39,10 @@ const Login = (props) => {
           unsucessful(true);
         }
       });
+    } else {
+      unsucessful(true);
     }
   };
-  console.log(isLoggedIn);
   if (isLoggedIn) {
     return <Redirect to="/" />;
   }

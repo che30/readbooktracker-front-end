@@ -54,11 +54,10 @@ const NewBook = ({
     final.data.forEach((element) => {
       if (element.name === filter) {
         createNewBook(book, element.id).then((result) => {
-          console.log(result);
           if (result.status === 200) {
             created(true);
           } else if (result.message) {
-            errMsg(result.message.slice(19, result.message.length));
+            errMsg([result.message]);
           }
         });
       }
@@ -123,7 +122,7 @@ const NewBook = ({
             <div>
               <input
                 className=""
-                type="text"
+                type="number"
                 id="pages"
                 placeholder="number of pages"
                 value={book.numberOfPages}

@@ -81,6 +81,10 @@ const AllBooks = () => {
                       <span className="font-helvetica-bold">isbn: </span>
                       <span className="text-dark font-helvetica-bold">{elt.isbn}</span>
                     </a>
+                    <p className="card-text">
+                      <span className="font-helvetica-light">pages: </span>
+                      <span>{elt.number_of_pages}</span>
+                    </p>
                   </div>
                 </div>
 
