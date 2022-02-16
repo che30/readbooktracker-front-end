@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 const CurrentUserMeasurement = async () => {
   const decoded = jwtDecode(JSON.parse(localStorage.getItem('auth_token')));
   try {
-    const rawResponse = await fetch(`https://mysterious-eyrie-66534.herokuapp.com/users/${decoded.user_id}/measurments`, {
+    const rawResponse = await fetch(`https://hidden-journey-97791.herokuapp.com/users/${decoded.user_id}/measurments`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

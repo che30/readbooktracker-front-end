@@ -5,7 +5,7 @@ const newMeasurementApi = async (pgRead, bookId, date) => {
   const token = data();
   const decoded = jwtDecode(token);
   try {
-    const rawResponse = await fetch('https://mysterious-eyrie-66534.herokuapp.com/measurments', {
+    const rawResponse = await fetch('https://hidden-journey-97791.herokuapp.com/measurments', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
