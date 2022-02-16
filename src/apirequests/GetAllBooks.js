@@ -5,7 +5,7 @@ const getAllBooks = async () => {
   const token = data();
   const decoded = jwtDecode(token);
   try {
-    const rawResponse = await fetch(`https://mysterious-eyrie-66534.herokuapp.com/:${decoded.user_id}/books`, {
+    const rawResponse = await fetch(`https://mysterious-eyrie-66534.herokuapp.com/users/:${decoded.user_id}/books`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
