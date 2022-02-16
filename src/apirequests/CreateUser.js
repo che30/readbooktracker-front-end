@@ -8,7 +8,7 @@ const creatUser = async (userCredentials) => {
     password_confirmation: userCredentials.passwordConfirmation,
   };
   try {
-    const result = await axios.post('http://127.0.0.1:3001/signup', body);
+    const result = await axios.post('https://mysterious-eyrie-66534.herokuapp.com/signup', body);
     return result;
   } catch (error) {
     return error;
