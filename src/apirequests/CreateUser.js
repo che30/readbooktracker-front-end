@@ -8,7 +8,7 @@ const creatUser = async (userCredentials) => {
     password_confirmation: userCredentials.passwordConfirmation,
   };
   try {
-    const result = await axios.post('https://hidden-journey-97791.herokuapp.com/signup', body);
+    const result = await axios.post('https://read-book-api.herokuapp.com/signup', body);
     return result;
   } catch (error) {
     return error;

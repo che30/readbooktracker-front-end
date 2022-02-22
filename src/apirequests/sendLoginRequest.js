@@ -3,7 +3,7 @@ import axios from 'axios';
 const sendLoginRequest = async (email, password) => {
   let result;
   try {
-    result = await axios.post('https://hidden-journey-97791.herokuapp.com/auth/login', {
+    result = await axios.post('https://read-book-api.herokuapp.com/auth/login', {
       email,
       password,
     });
