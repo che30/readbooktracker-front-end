@@ -16,7 +16,6 @@ const AllBooks = () => {
     });
   }, []);
   const eltColor = (index) => {
-    console.log('test succeeds', index);
     if ((index % 2) === 0) {
       return 'even__color';
     }

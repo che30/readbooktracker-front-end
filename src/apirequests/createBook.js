@@ -21,7 +21,6 @@ const createNewBook = async (book, id) => {
       }),
     });
     const content = await rawResponse.json();
-    console.log(content);
     return content;
   } catch (error) {
     return error;
