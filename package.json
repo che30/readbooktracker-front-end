@@ -1,6 +1,7 @@
 {
   "name": "booktracker",
   "version": "0.1.0",
+  "homepage": "https://read-book-tracker-front-end.herokuapp.com",
   "engines": {
     "node": "16.1.0"
   },
