@@ -44,15 +44,15 @@ const Dashboard = ({
   }, []);
   console.log(measureStatus, measurments, books);
   if (measureStatus) {
-    for (let i = 0; i <= books.length + 1; i += 1) {
+    books.forEach((book) => {
       measurments.forEach((measurement) => {
         console.log('success');
-        console.log(measurement.book_id, i);
-        if (measurement.book_id === i) {
-          ids[i] = measurement.pages_read;
+        console.log(measurement.book_id, book.id);
+        if (measurement.book_id === book.id) {
+          ids[book.id] = measurement.pages_read;
         }
       });
-    }
+    });
     Object.keys(ids).forEach((val) => {
       measurments.forEach((measurement) => {
         if ((measurement.pages_read > ids[val])
