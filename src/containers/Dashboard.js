@@ -20,8 +20,8 @@ const Dashboard = ({
   isFinished,
 }) => {
   const testvar = [];
-  const todayMeasureMents = [];
-  const yesterdayMeasurement = [];
+  let todayMeasureMents = [];
+  let yesterdayMeasurement = [];
   const dateOfToday = new Date().toISOString();
   const timeStamp = new Date().getTime();
   const yesterdayTimeStamp = timeStamp - 24 * 60 * 60 * 1000;
@@ -60,11 +60,11 @@ const Dashboard = ({
     });
     Object.keys(ids).forEach((val, index) => {
       measurments.forEach((measure) => {
-        if ((parseInt(val, 10) === measure.book_id) && (ids[val] === measure.pages_read)) {
+        if ((parseInt(val, 10) === measure.book_id)) {
           testvar.push({
             pagesRead: measure.pages_read,
             bookdId: measure.book_id,
-            createdAt: measure.created_at,
+            createdAt: measure.date,
             bookname: books[index].name,
             bookNumberOfPages: books[index].number_of_pages,
             bookIsbn: books[index].isbn,
@@ -80,6 +80,24 @@ const Dashboard = ({
         yesterdayMeasurement.push(info);
       }
     });
+    let max = todayMeasureMents[0].pagesRead;
+    let maxHash;
+    todayMeasureMents.forEach((elt) => {
+      if (elt.pagesRead >= max) {
+        max = elt.pagesRead;
+        maxHash = elt;
+      }
+    });
+    todayMeasureMents = [maxHash];
+    let maxYesterday = yesterdayMeasurement[0].pagesRead;
+    let maxHashYesterday;
+    yesterdayMeasurement.forEach((elt) => {
+      if (elt.pagesRead >= maxYesterday) {
+        maxYesterday = elt.pagesRead;
+        maxHashYesterday = elt;
+      }
+    });
+    yesterdayMeasurement = [maxHashYesterday];
     isFinished(true);
   }
 
