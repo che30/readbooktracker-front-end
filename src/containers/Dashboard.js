@@ -89,15 +89,18 @@ const Dashboard = ({
       }
     });
     todayMeasureMents = [maxHash];
-    let maxYesterday = yesterdayMeasurement[0].pagesRead;
-    let maxHashYesterday;
-    yesterdayMeasurement.forEach((elt) => {
-      if (elt.pagesRead >= maxYesterday) {
-        maxYesterday = elt.pagesRead;
-        maxHashYesterday = elt;
-      }
-    });
-    yesterdayMeasurement = [maxHashYesterday];
+    if (yesterdayMeasurement.length !== 0) {
+      console.log(yesterdayMeasurement);
+      let maxYesterday = yesterdayMeasurement[0].pagesRead;
+      let maxHashYesterday;
+      yesterdayMeasurement.forEach((elt) => {
+        if (elt.pagesRead >= maxYesterday) {
+          maxYesterday = elt.pagesRead;
+          maxHashYesterday = elt;
+        }
+      });
+      yesterdayMeasurement = [maxHashYesterday];
+    }
     isFinished(true);
   }
 
@@ -264,9 +267,7 @@ const Dashboard = ({
   }
   return (
     <>
-      <div className="text-center">
-        Loading ...
-      </div>
+      <div className="text-center" />
     </>
   );
 };
