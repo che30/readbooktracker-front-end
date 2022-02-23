@@ -42,7 +42,7 @@ const Dashboard = ({
       }
     }
   }, []);
-  console.log(measureStatus, measurments);
+  console.log(measureStatus, measurments, books);
   if (measureStatus) {
     for (let i = 0; i <= books.length + 1; i += 1) {
       measurments.forEach((measurement) => {
