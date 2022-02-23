@@ -5,7 +5,7 @@ const newMeasurementApi = async (pgRead, bookId, date) => {
   const token = data();
   const decoded = jwtDecode(token);
   try {
-    const rawResponse = await fetch('https://read-book-tracker-front-end.herokuapp.com/api/measurments', {
+    const rawResponse = await fetch('https://read-book-api.herokuapp.com/api/measurments', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
