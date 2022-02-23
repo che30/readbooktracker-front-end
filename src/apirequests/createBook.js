@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 const createNewBook = async (book, id) => {
   const decoded = jwtDecode(JSON.parse(localStorage.getItem('auth_token')));
   try {
-    const rawResponse = await fetch(`http://127.0.0.1:3001/api/users/${decoded.user_id}/books`, {
+    const rawResponse = await fetch(`https://read-book-api.herokuapp.com/api/users/${decoded.user_id}/books`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
