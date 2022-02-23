@@ -17,7 +17,7 @@ const Dashboard = ({
   bookfetch,
   bookFetchComplete,
   measurementFetch,
-  measurmentComplete,
+  isFinished,
 }) => {
   const testvar = [];
   const todayMeasureMents = [];
@@ -26,27 +26,24 @@ const Dashboard = ({
   const timeStamp = new Date().getTime();
   const yesterdayTimeStamp = timeStamp - 24 * 60 * 60 * 1000;
   const yesterdayDate = new Date(yesterdayTimeStamp).toISOString();
+  const ids = {};
   useEffect(async () => {
     const data = await getAllBooks();
     const measurement = await CurrentUserMeasurement();
     if ((data !== undefined)
-     && data.length !== 0
-    && (Object.keys(data[0]).length === 9)) {
+       && data.length !== 0
+      && (Object.keys(data[0]).length === 9)) {
       bookfetch(data);
-    }
-    if (measurement !== undefined) {
-      measurementFetch(measurement);
-    }
-    if (data !== undefined) {
-      measurmentComplete(true);
-    }
-    if (measurement !== undefined) {
-      bookFetchComplete(true);
+      if (measurement !== undefined) {
+        measurementFetch(measurement);
+      }
+      if (measurement !== undefined) {
+        bookFetchComplete(true);
+      }
     }
   }, []);
-  const ids = {};
   if (measureStatus) {
-    for (let i = 0; i <= books.length; i += 1) {
+    for (let i = 0; i <= books.length + 1; i += 1) {
       measurments.forEach((measurement) => {
         if (measurement.book_id === i) {
           ids[i] = measurement.pages_read;
@@ -75,18 +72,18 @@ const Dashboard = ({
         }
       });
     });
+    testvar.forEach((info) => {
+      if (info.createdAt.slice(0, 10) === dateOfToday.slice(0, 10)) {
+        todayMeasureMents.push(info);
+      }
+      if (info.createdAt.slice(0, 10) === yesterdayDate.slice(0, 10)) {
+        yesterdayMeasurement.push(info);
+      }
+    });
+    isFinished(true);
   }
-  testvar.forEach((info) => {
-    if (info.createdAt.slice(0, 10) === dateOfToday.slice(0, 10)) {
-      todayMeasureMents.push(info);
-    }
-    if (info.createdAt.slice(0, 10) === yesterdayDate.slice(0, 10)) {
-      yesterdayMeasurement.push(info);
-    }
-  });
+
   const todayFunc = (params) => {
-    console.log(todayMeasureMents);
-    console.log(params.length);
     if (params.length > 0) {
       return ' Today';
     }
@@ -249,7 +246,9 @@ const Dashboard = ({
   }
   return (
     <>
-      <div className="text-center" />
+      <div className="text-center">
+        Loading ...
+      </div>
     </>
   );
 };
@@ -257,7 +256,7 @@ Dashboard.defaultProps = {
   bookFetchComplete() {},
   bookfetch() {},
   measurementFetch() {},
-  measurmentComplete() {},
+  isFinished() {},
   books: [],
   measurments: [],
 };
@@ -265,7 +264,7 @@ Dashboard.propTypes = {
   bookFetchComplete: PropTypes.func,
   bookfetch: PropTypes.func,
   measurementFetch: PropTypes.func,
-  measurmentComplete: PropTypes.func,
+  isFinished: PropTypes.func,
   finished: PropTypes.bool.isRequired,
   measureStatus: PropTypes.bool.isRequired,
   books: PropTypes.arrayOf(PropTypes.shape({
@@ -289,6 +288,6 @@ const mapDispatchToProps = (dispatch) => ({
   bookfetch: (result) => dispatch(setBooksFromApi(result)),
   bookFetchComplete: (res) => dispatch(setMeasurementStatus(res)),
   measurementFetch: (res) => dispatch(setMeasurementApi(res)),
-  measurmentComplete: (res) => dispatch(setFinishedStaus(res)),
+  isFinished: (res) => dispatch(setFinishedStaus(res)),
 });
 export default connect(mapStateProps, mapDispatchToProps)(Dashboard);
