@@ -54,7 +54,7 @@ const NewBook = ({
     final.data.forEach((element) => {
       if (element.name === filter) {
         createNewBook(book, element.id).then((result) => {
-          if (result.status === 200) {
+          if (Object.keys(result).length === 9) {
             created(true);
           } else if (result.message) {
             errMsg([result.message]);
@@ -86,10 +86,10 @@ const NewBook = ({
           <BookFilter changeFilter={changeFilter} />
         </div>
         <div>
-          <form className="mx-auto new__book__form font-helvetica-light">
+          <form className="mx-auto new__book__form">
             <div>
               <input
-                className=""
+                className="font-helvetica-light"
                 type="text"
                 id="name"
                 placeholder="name"
@@ -99,7 +99,7 @@ const NewBook = ({
             </div>
             <div>
               <input
-                className=""
+                className="font-helvetica-light"
                 type="text"
                 id="author"
                 placeholder="author"
@@ -110,7 +110,7 @@ const NewBook = ({
 
             <div>
               <input
-                className=""
+                className="font-helvetica-light"
                 type="text"
                 id="isbn"
                 placeholder="ISBN"
@@ -121,7 +121,7 @@ const NewBook = ({
 
             <div>
               <input
-                className=""
+                className="font-helvetica-light"
                 type="number"
                 id="pages"
                 placeholder="number of pages"

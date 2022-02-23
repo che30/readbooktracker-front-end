@@ -97,7 +97,7 @@ const signUp = ({
               id="user-name"
               value={userCredentials.username}
               onChange={handleChange}
-              className="text-center input-form"
+              className="text-center input-form font-helvetica-light"
             />
           </div>
           <div>
@@ -107,7 +107,7 @@ const signUp = ({
               id="user-email"
               value={userCredentials.email}
               onChange={handleChange}
-              className="text-center input-form "
+              className="text-center input-form font-helvetica-light "
             />
           </div>
           <div>
@@ -117,7 +117,7 @@ const signUp = ({
               id="user-password"
               value={userCredentials.password}
               onChange={handleChange}
-              className="text-center input-form "
+              className="text-center input-form font-helvetica-light"
             />
           </div>
           <div>
@@ -127,7 +127,7 @@ const signUp = ({
               id="user-password-confirmation"
               value={userCredentials.passwordConfirmation}
               onChange={handleChange}
-              className="text-center input-form "
+              className="text-center input-form font-helvetica-light"
             />
           </div>
           <button type="submit" className="Login__submit font-helvetica-bold" onClick={handleSubmit}>

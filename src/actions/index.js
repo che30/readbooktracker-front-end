@@ -40,10 +40,13 @@ const pagesRead = (pg) => ({
   type: PAGES_READ,
   pg,
 });
-const bookCreated = (status) => ({
-  type: BOOK_CREATED,
-  status,
-});
+const bookCreated = (status) => {
+  console.log(status);
+  return {
+    type: BOOK_CREATED,
+    status,
+  };
+};
 const FilterCategories = (category) => ({
   type: CATEGORY_FILTER,
   category,

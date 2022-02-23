@@ -58,7 +58,7 @@ const Measure = (props) => {
               onChange={handleChange}
               placeholder="pages read"
               id="pages-read"
-              className="text-center"
+              className="text-center font-helvetica-light"
             />
           </div>
           <div>

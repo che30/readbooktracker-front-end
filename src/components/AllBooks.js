@@ -15,13 +15,6 @@ const AllBooks = () => {
       setIsLoading(false);
     });
   }, []);
-  const eltColor = (index) => {
-    if ((index % 2) === 0) {
-      return 'even__color';
-    }
-
-    return 'odd__color';
-  };
   if (isloading) {
     return (
       <>
@@ -55,8 +48,8 @@ const AllBooks = () => {
       <div className="container mt-3">
         <div className="row book__row justify-content-center">
 
-          { book.map((elt, index) => (
-            <div className="col-12 col-md-4 col-lg-4" key={elt.id}>
+          { book.map((elt) => (
+            <div className="col-12 col-md-4 col-lg-3" key={elt.id}>
               <Link
                 to={{
                   pathname: '/measure',
@@ -66,7 +59,7 @@ const AllBooks = () => {
                 }}
                 className=" list-unstyled text-decoration-none d-flex"
               >
-                <div className={`${eltColor(index)} card`}>
+                <div className="card">
                   <div className="card-body">
                     <h5 className="card-title green__color font-helvetica-bold">
                       <span className="font-helvetica-light">book name: </span>

@@ -59,7 +59,7 @@ const Login = (props) => {
         ) : <div> </div>}
       </div>
       <div className="form__container">
-        <form className=" mx-auto Login__form">
+        <form className=" mx-auto Login__form ">
           <div>
 
             <input
@@ -68,7 +68,7 @@ const Login = (props) => {
               id="user-email"
               value={email}
               onChange={handleChange}
-              className="text-center input-form"
+              className="text-center input-form font-helvetica-light"
             />
           </div>
           <div>
@@ -78,7 +78,7 @@ const Login = (props) => {
               id="user-password"
               value={password}
               onChange={handleChange}
-              className=" text-center input-form"
+              className=" text-center input-form font-helvetica-light"
             />
           </div>
           <button type="submit" className="Login__submit font-helvetica-bold" onClick={handleSubmit}>
