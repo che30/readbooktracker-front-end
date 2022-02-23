@@ -42,12 +42,9 @@ const Dashboard = ({
       }
     }
   }, []);
-  console.log(measureStatus, measurments, books);
   if (measureStatus) {
     books.forEach((book) => {
       measurments.forEach((measurement) => {
-        console.log('success');
-        console.log(measurement.book_id, book.id);
         if (measurement.book_id === book.id) {
           ids[book.id] = measurement.pages_read;
         }
@@ -75,7 +72,6 @@ const Dashboard = ({
         }
       });
     });
-    console.log(testvar);
     testvar.forEach((info) => {
       if (info.createdAt.slice(0, 10) === dateOfToday.slice(0, 10)) {
         todayMeasureMents.push(info);
