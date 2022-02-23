@@ -87,7 +87,7 @@ const Dashboard = ({
   const todayFunc = (params) => {
     console.log(params.length);
     if (params.length > 0) {
-      console.log(todayMeasureMents)
+      console.log(todayMeasureMents);
       return ' Today';
     }
     return '';
