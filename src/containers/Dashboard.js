@@ -46,6 +46,8 @@ const Dashboard = ({
   if (measureStatus) {
     for (let i = 0; i <= books.length + 1; i += 1) {
       measurments.forEach((measurement) => {
+        console.log('success');
+        console.log(measurement.book_id, i);
         if (measurement.book_id === i) {
           ids[i] = measurement.pages_read;
         }
@@ -59,7 +61,6 @@ const Dashboard = ({
         }
       });
     });
-    console.log(ids);
     Object.keys(ids).forEach((val, index) => {
       measurments.forEach((measure) => {
         if ((parseInt(val, 10) === measure.book_id) && (ids[val] === measure.pages_read)) {
@@ -74,7 +75,6 @@ const Dashboard = ({
         }
       });
     });
-    console.log(ids);
     console.log(testvar);
     testvar.forEach((info) => {
       if (info.createdAt.slice(0, 10) === dateOfToday.slice(0, 10)) {
