@@ -42,6 +42,7 @@ const Dashboard = ({
       }
     }
   }, []);
+  console.log(measureStatus, measurments);
   if (measureStatus) {
     for (let i = 0; i <= books.length + 1; i += 1) {
       measurments.forEach((measurement) => {
@@ -72,6 +73,7 @@ const Dashboard = ({
         }
       });
     });
+    console.log(testvar);
     testvar.forEach((info) => {
       if (info.createdAt.slice(0, 10) === dateOfToday.slice(0, 10)) {
         todayMeasureMents.push(info);
