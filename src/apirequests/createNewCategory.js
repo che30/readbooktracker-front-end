@@ -1,11 +1,12 @@
 import axios from 'axios';
 import data from '../helpers/data';
+import backEndUrl from '../helpers/backendLink';
 
 const createNewCategory = async (name) => {
   const token = data();
   try {
     // https://read-book-api.herokuapp.com/ read-book-tracker-front-end
-    const result = await axios.post('https://read-book-api.herokuapp.com/api/cats', {
+    const result = await axios.post(`${backEndUrl()}/api/cats`, {
       name,
     },
     { headers: { Authorization: `Bearer ${token}` } });

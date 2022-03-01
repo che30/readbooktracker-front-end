@@ -1,11 +1,10 @@
 import axios from 'axios';
+import backEndUrl from '../helpers/backendLink';
 
 const sendLoginRequest = async (email, password) => {
   let result;
   try {
-    // http://127.0.0.1:3001
-    // https://read-book-api.herokuapp.com
-    result = await axios.post('https://read-book-api.herokuapp.com/auth/login', {
+    result = await axios.post(`${backEndUrl()}/auth/login`, {
       email,
       password,
     });

@@ -1,10 +1,12 @@
 // import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import backEndUrl from '../helpers/backendLink';
+import data from '../helpers/data';
 
 const createNewBook = async (book, id) => {
-  const decoded = jwtDecode(JSON.parse(localStorage.getItem('auth_token')));
+  const decoded = jwtDecode(data());
   try {
-    const rawResponse = await fetch(`https://read-book-api.herokuapp.com/api/users/${decoded.user_id}/books`, {
+    const rawResponse = await fetch(`${backEndUrl()}/api/users/${decoded.user_id}/books`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

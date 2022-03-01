@@ -1,4 +1,5 @@
 import axios from 'axios';
+import backEndUrl from '../helpers/backendLink';
 
 const creatUser = async (userCredentials) => {
   const body = {
@@ -8,7 +9,7 @@ const creatUser = async (userCredentials) => {
     password_confirmation: userCredentials.passwordConfirmation,
   };
   try {
-    const result = await axios.post('https://read-book-api.herokuapp.com/signup', body);
+    const result = await axios.post(`${backEndUrl()}/signup`, body);
     return result;
   } catch (error) {
     return error;

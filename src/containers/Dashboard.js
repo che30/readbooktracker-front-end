@@ -80,17 +80,19 @@ const Dashboard = ({
         yesterdayMeasurement.push(info);
       }
     });
-    let max = todayMeasureMents[0].pagesRead;
+    let max;
     let maxHash;
-    todayMeasureMents.forEach((elt) => {
-      if (elt.pagesRead >= max) {
-        max = elt.pagesRead;
-        maxHash = elt;
-      }
-    });
-    todayMeasureMents = [maxHash];
+    if (todayMeasureMents.length !== 0) {
+      max = todayMeasureMents[0].pagesRead;
+      todayMeasureMents.forEach((elt) => {
+        if (elt.pagesRead >= max) {
+          max = elt.pagesRead;
+          maxHash = elt;
+        }
+      });
+      todayMeasureMents = [maxHash];
+    }
     if (yesterdayMeasurement.length !== 0) {
-      console.log(yesterdayMeasurement);
       let maxYesterday = yesterdayMeasurement[0].pagesRead;
       let maxHashYesterday;
       yesterdayMeasurement.forEach((elt) => {

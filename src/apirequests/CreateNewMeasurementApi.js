@@ -1,11 +1,12 @@
 import jwtDecode from 'jwt-decode';
 import data from '../helpers/data';
+import backEndUrl from '../helpers/backendLink';
 
 const newMeasurementApi = async (pgRead, bookId, date) => {
   const token = data();
   const decoded = jwtDecode(token);
   try {
-    const rawResponse = await fetch('https://read-book-api.herokuapp.com/api/measurments', {
+    const rawResponse = await fetch(`${backEndUrl()}/api/measurments`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
