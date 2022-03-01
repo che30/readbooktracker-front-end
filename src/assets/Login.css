@@ -94,5 +94,10 @@ input[type="text"] {
 
   .Login__form {
     height: 15vh;
+    width: 40%;
+    height: 35vh;
+  }
+  .form__container {
+    margin-top: 200px;
   }
 }

@@ -30,16 +30,12 @@ const Dashboard = ({
   useEffect(async () => {
     const data = await getAllBooks();
     const measurement = await CurrentUserMeasurement();
-    if ((data !== undefined)
-       && data.length !== 0
-      && (Object.keys(data[0]).length === 9)) {
-      bookfetch(data);
-      if (measurement !== undefined) {
-        measurementFetch(measurement);
-      }
-      if (measurement !== undefined) {
-        bookFetchComplete(true);
-      }
+    bookfetch(data);
+    if (measurement !== undefined) {
+      measurementFetch(measurement);
+    }
+    if (measurement !== undefined) {
+      bookFetchComplete(true);
     }
   }, []);
   if (measureStatus) {

@@ -11,7 +11,7 @@ const createNewBook = async (book, id) => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem('auth_token'))}`,
+        Authorization: `Bearer ${data()}`,
       },
       body: JSON.stringify({
         name: book.name,
