@@ -19,7 +19,7 @@ const createNewBook = async (book, id) => {
         isbn: book.isbn,
         user_id: decoded.user_id,
         number_of_pages: book.pages,
-        cat_id: id,
+        category_id: id,
       }),
     });
     const content = await rawResponse.json();

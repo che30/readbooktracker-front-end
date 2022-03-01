@@ -1,11 +1,8 @@
-import jwtDecode from 'jwt-decode';
 import backEndUrl from '../helpers/backendLink';
-import data from '../helpers/data';
 
 const CurrentUserMeasurement = async () => {
-  const decoded = jwtDecode(data());
   try {
-    const rawResponse = await fetch(`${backEndUrl()}/api/users/${decoded.user_id}/measurments`, {
+    const rawResponse = await fetch(`${backEndUrl()}/api/user-measurements`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

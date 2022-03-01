@@ -27,7 +27,7 @@ const Measure = (props) => {
     e.preventDefault();
     newMeasurementApi(pgRead, location.state.id,
       date).then((data) => {
-      if (Object.keys(data).length === 8) {
+      if (Object.keys(data).length === 7) {
         setStatus(true);
       } else {
         errMsg([data.message]);

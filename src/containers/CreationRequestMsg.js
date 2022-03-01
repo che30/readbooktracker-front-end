@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const CreateRequestMsg = ({ load }) => {
   if (load) {
     return (
-      <div className="text-center">
+      <div className="text-center text-white">
         creating user
       </div>
     );

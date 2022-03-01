@@ -6,7 +6,7 @@ const newMeasurementApi = async (pgRead, bookId, date) => {
   const token = data();
   const decoded = jwtDecode(token);
   try {
-    const rawResponse = await fetch(`${backEndUrl()}/api/measurments`, {
+    const rawResponse = await fetch(`${backEndUrl()}/api/users/${decoded.user_id}/books/${bookId}/measurements`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
