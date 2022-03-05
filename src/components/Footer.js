@@ -6,7 +6,7 @@ const Footer = () => (
   <>
     <div className="menu d-flex flex-row justify-content-around font-helvetica-bold ">
       <div className="d-flex  flex-column justify-content-center align-items-center">
-        <div>
+        <div className="test__div">
           <NavLink
             exact
             to="/books"

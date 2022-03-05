@@ -5,7 +5,7 @@ import '../assets/Navbar.css';
 const Navbar = ({ Navcontent }) => {
   const handleClick = () => {
     localStorage.setItem('auth_token', null);
-    window.location.href = '/Login';
+    window.location.replace('/Login');
   };
   return (
     <>
