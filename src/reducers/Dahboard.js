@@ -3,9 +3,9 @@ import {
 } from '../actions';
 
 const initialState = {
-  books: '',
+  books: [],
   finished: false,
-  measurements: '',
+  measurements: [],
   measurmentStatus: false,
 };
 const DashboardReducer = (state = initialState, action) => {

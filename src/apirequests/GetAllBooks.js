@@ -10,7 +10,7 @@ const getAllBooks = async () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem('auth_token'))}`,
+        Authorization: `Bearer ${data()}`,
       },
     });
     const content = await rawResponse.json();

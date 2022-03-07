@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navabr renders properly 1`] = `
+<nav
+  className="bg_color_Pantone w-100 text-white d-flex font-helvetica-bold"
+>
+  <div
+    className="Navcontent"
+  >
+    Dashboard
+  </div>
+  <div
+    className="Logout__logo"
+  >
+    <button
+      aria-label="Logout"
+      className="sign__out__Btn"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fa fa-power-off"
+      />
+    </button>
+  </div>
+</nav>
+`;
