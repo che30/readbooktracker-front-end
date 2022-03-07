@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import backEndUrl from '../helpers/backendLink';
 import data from '../helpers/data';

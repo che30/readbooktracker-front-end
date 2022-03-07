@@ -5,7 +5,6 @@ import backEndUrl from '../helpers/backendLink';
 const createNewCategory = async (name) => {
   const token = data();
   try {
-    // https://read-book-api.herokuapp.com/ read-book-tracker-front-end
     const result = await axios.post(`${backEndUrl()}/api/categories`, {
       name,
     },
