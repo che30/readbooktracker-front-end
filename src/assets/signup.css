@@ -31,7 +31,6 @@
   .back__btn {
     width: 35%;
   }
-  
 }
 
 @media (max-width: 767px) and (min-width: 567px) {
@@ -47,7 +46,6 @@
     padding: 20px 0 20px 0;
     border-radius: 5px;
   }
-
 }
 
 @media (max-width: 1024px) and (min-width: 768px) {
@@ -59,5 +57,4 @@
   .sign__up__form__container {
     margin-top: 200px;
   }
-  
 }
