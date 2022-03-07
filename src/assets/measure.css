@@ -1,0 +1,40 @@
+.measure__form {
+  width: 25%;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.measure__form input {
+  border: 1px solid rgb(194, 188, 188);
+  width: 95%;
+  margin-left: 2.5%;
+}
+
+.new__measure__padding__top {
+  margin-top: 10%;
+}
+
+@media (max-width: 567px) {
+  .measure__form {
+    width: 60%;
+    height: 30vh;
+  }
+
+  .new__measure__padding__top {
+    margin-top: 20%;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .measure__form {
+    height: 20vh;
+  }
+
+  .new__measure__padding__top {
+    margin-top: 20%;
+  }
+}
